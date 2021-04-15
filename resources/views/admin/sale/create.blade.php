@@ -1,0 +1,63 @@
+@extends('layouts.admin')
+@section('title', 'Ventas/registrar')
+@section('estilos')
+	{{-- <link rel="stylesheet" href="{{ asset('select/dist/css/bootstrap-select.min.css') }}"> --}}
+@endsection
+@section('preference')
+	{{-- expr --}}
+@endsection
+@section('content')
+<div class="content-wrapper">
+	<div class="page-header">
+		<h3 class="page-title">Registrar venta.</h3>
+		<nav aria-label="breadcrumb">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="{{ route('ptoventa') }}">Panel administrador</a></li>
+				<li class="breadcrumb-item"><a href="{{ route('sales.index') }}">Ventas</a></li>
+				<li class="breadcrumb-item active" aria-current="page">Registrar venta.</li>
+			</ol>
+		</nav>
+	</div>
+	{{-- Inicio de fila --}}
+	<div class="row">
+		{{-- Inicio de columna --}}
+		<div class="col-12 grid-margin stretch-card">
+			{{-- Inicio de card --}}
+		  	<div class="card">
+		  		{{-- {!! Form::open(['method' => 'POST', 'route' => 'sales.store', 'class' => 'form-horizontal']) !!} --}}
+		  		{{-- Inicio card-body --}}
+			    <div class="card-body">
+					<div class="d-flex justify-content-between">
+                        <h4 class="card-title">Registro de venta.</h4>
+                    </div>
+                    {!! Form::open(['method' => 'POST', 'route' => 'sales.store', 'class' => 'row g-3']) !!}
+
+                    	@include('admin.sale.partials.form')
+
+			    {{-- fin card-body --}}
+				</div>
+				<div class="card-footer">
+					@can('sales.create')
+						<div class="btn-group me-2" role="group" aria-label="Reset y agregar">
+					        {!! Form::reset("Borrar contenido", ['class' => 'btn btn-warning']) !!}
+					        {!! Form::submit("Agregar", ['class' => 'btn btn-primary', 'id' => 'guardar']) !!}
+					    </div>
+					@endcan
+				    <a class="btn btn-light" href="{{ route('sales.index') }}">Cancelar</a>
+				</div>
+				{!! Form::close() !!}
+			{{-- fin card --}}
+		  	</div>
+		{{-- fin columna --}}
+		</div>
+	{{-- Fin fila --}}
+	</div>
+</div>
+@endsection
+@section('js')
+	<script type="text/javascript" src="{{ asset('melody/js/data-table.js') }}"></script>
+	<!-- Custom js for this page-->
+  <script src="{{ asset('melody/js/alerts.js') }}"></script>
+  <script src="{{ asset('melody/js/avgrund.js') }}"></script>
+  <script src="{{ asset('js/detalleVenta.js') }}"></script>
+@endsection

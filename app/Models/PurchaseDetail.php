@@ -1,0 +1,31 @@
+<?php
+
+namespace App\Models;
+
+use App\Models\Product;
+use App\Models\Purchase;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class PurchaseDetail extends Model
+{
+    use HasFactory;
+
+    protected $fillable = [
+        'quantity',
+        'price',
+        'purchase_id',
+        'product_id',
+    ];
+
+    //Relaciones
+    public function purchase()
+    {
+        return $this->belongsTo(Purchase::class);
+    }
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
+}
