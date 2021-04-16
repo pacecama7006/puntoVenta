@@ -25,12 +25,11 @@ class StoreRequest extends FormRequest
     {
         return [
             //
-            'name'        => 'string|required|string|max:100|unique:products',
+            'name'        => 'string|required|max:100|unique:products',
             'code'        => 'unique:products',
             'slug'        => 'string|unique:products',
             'bar_code'    => 'unique:products',
             'description' => 'required|string|min:10|max:255',
-            'image'       => 'mimes:jpg,bmp,png,jpeg',
             'sell_price'  => 'required',
             'provider_id' => 'integer|required|exists:providers,id',
             'category_id' => 'integer|required|exists:categories,id',
