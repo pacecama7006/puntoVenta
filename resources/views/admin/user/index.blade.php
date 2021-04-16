@@ -85,9 +85,15 @@
 												@endcan
 
 												@can('users.edit')
-													<a class="jsgrid-button jsgrid-edit-button" href="{{ route('users.edit', $user) }}" title="Editar">
-													<i class="far fa-edit"></i>
-												</a>
+													@if ($user->id == 1)
+														<a class="jsgrid-button jsgrid-edit-button" href="{{ route('users.index') }}" title="Editar">
+															<i class="far fa-edit"></i>
+														</a>
+													@else
+														<a class="jsgrid-button jsgrid-edit-button" href="{{ route('users.edit', $user) }}" title="Editar">
+															<i class="far fa-edit"></i>
+														</a>
+													@endif
 												@endcan
 
 												@can('users.destroy')
