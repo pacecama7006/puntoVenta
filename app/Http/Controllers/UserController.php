@@ -30,8 +30,8 @@ class UserController extends Controller
     {
         //Lo voy a hacer con livewire, ahí paso los usuarios
         //return view('admin.user.index');
-
-        $users = User::all();
+        $users = User::where('id', '<>', 1)->get();
+        //$users = User::all();
         return view('admin.user.index', compact('users'));
     }
 
@@ -111,14 +111,17 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
 
-        $user->update($request->all());
+        if ($user->id == 1) {
+            return redirect()->route('users.index')->with(['message' => 'Permiso denegado']);
+            # code...
+        } else {
+            $user->update($request->all());
+            /*Accedo al objeto usuario que me manda la vista, y a través de él a su relación y a través de la relación roles de spatie/permision/models/Role accedo al método sync para asignar los roles seleccionados  en la vista edit y al método le paso lo que trae el formulario a través del request en el campo roles*/
+            $user->roles()->sync($request->roles);
 
-        /*Accedo al objeto usuario que me manda la vista, y a través de él a su relación
-        y a través de la relación roles de spatie/permision/models/Role accedo al método sync para asignar los roles seleccionados  en la vista edit y al método le paso lo que trae
-        el formulario a través del request en el campo roles*/
-        $user->roles()->sync($request->roles);
+            return redirect()->route('users.index')->with(['message' => 'El registro se actualizó con éxito.']);
+        }
 
-        return redirect()->route('users.index')->with(['message' => 'El registro se actualizó con éxito.']);
     }
 
     /**
@@ -130,8 +133,14 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         //
-        $user->delete();
-        return redirect()->route('users.index')->with(['message' => 'El registro fué eliminado correctamente.']);
+        if ($user->id == 1) {
+            return redirect()->route('users.index')->with(['message' => 'Permiso denegado.']);
+        } else {
+            $user->delete();
+            return redirect()->route('users.index')->with(['message' => 'El registro fué eliminado correctamente.']);
+
+        }
+
     }
 
     public function pdfUsers()
