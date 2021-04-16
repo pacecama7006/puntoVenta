@@ -28,7 +28,6 @@ class StoreRequest extends FormRequest
             'purchase_date' => 'required|date',
             'num_compra'    => 'required|integer|unique:purchases,num_compra',
             'provider_id'   => 'integer|required|exists:providers,id',
-            'picture'       => 'mimes:jpg,bmp,png,jpeg',
         ];
     }
 }
