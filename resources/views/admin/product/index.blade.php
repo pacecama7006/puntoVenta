@@ -56,6 +56,11 @@
 							  	<span style="font-size: 20px;"><i class="fas fa-file-excel"></i></span>
 							</a>
 						  @endcan
+						  @can('products.pdfProducts')
+						  	<a href="{{ route('print_barcode') }}" title="Imprimir códigos de barras">
+							  	<span style="font-size: 20px;" class="ms-2"><i class="fas fa-barcode"></i></span>
+							</a>
+						  @endcan
 						</div>
                     </div>
 					{{-- Inicio de tabla-responsive --}}
