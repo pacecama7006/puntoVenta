@@ -28,7 +28,8 @@ class RoleController extends Controller
     public function index()
     {
         //
-        $roles = Role::get();
+        // $roles = Role::get();
+        $roles = Role::where('id', '<>', 1)->get();
         return view('admin.role.index', compact('roles'));
     }
 
@@ -77,6 +78,7 @@ class RoleController extends Controller
     {
         //
         return view('admin.role.show', compact('role'));
+
     }
 
     /**
@@ -89,8 +91,12 @@ class RoleController extends Controller
     {
         //Traigo todos los permisos que existen. Tengo que importar la librería use Spatie\Permission\Models\Permission;
         $permissions = Permission::all();
+        if ($role->id == 1) {
+            return view('admin.role.index');
+        } else {
+            return view('admin.role.edit', compact('role', 'permissions'));
+        }
 
-        return view('admin.role.edit', compact('role', 'permissions'));
     }
 
     /**
@@ -124,10 +130,15 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
-        //Elimino el rol Accediendo al objeto role y con el método delete
-        $role->delete();
+        if ($role->id == 1) {
+            return redirect()->route('roles.index')->with(['message' => 'Permiso denegado.']);
+        } else {
+            //Elimino el rol Accediendo al objeto role y con el método delete
+            $role->delete();
 
-        return redirect()->route('roles.index')->with(['message' => 'El registro fué eliminado correctamente.']);
+            return redirect()->route('roles.index')->with(['message' => 'El registro fué eliminado correctamente.']);
+        }
+
     }
 
     public function pdfRoles()
