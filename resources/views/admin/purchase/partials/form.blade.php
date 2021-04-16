@@ -36,7 +36,7 @@
 </div>
 <div class="col-md-3{{ $errors->has('tax') ? ' has-error' : '' }}">
     {!! Form::label('tax', 'Impuesto:', ['class' => 'form-label']) !!}
-    {!! Form::number('tax', null, ['class' => 'form-control']) !!}
+    {!! Form::number('tax', '0', ['class' => 'form-control']) !!}
     <small class="text-danger">{{ $errors->first('tax') }}</small>
 </div>
 <div class="col-md-6{{ $errors->has('picture') ? ' has-error' : '' }}">
