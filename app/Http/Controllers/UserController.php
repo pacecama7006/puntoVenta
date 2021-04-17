@@ -146,7 +146,7 @@ class UserController extends Controller
     public function pdfUsers()
     {
         # code...
-        $users = User::with('roles')->get();
+        $users = User::where('id', '<>', 1)->with('roles')->get();
         $pdf   = PDF::loadView('admin.user.users_pdf', compact('users'));
         return $pdf->download('Listado_usuarios.pdf');
     }

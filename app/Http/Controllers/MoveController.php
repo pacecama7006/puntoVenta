@@ -137,6 +137,7 @@ class MoveController extends Controller
     public function update(Request $request, Move $move)
     {
         //Obtengo los datos del formulario
+        $fecha_ant = $move->fecha_mov;
         // $id         = (int) $request->input('id');
         $fecha_mov  = $request->input('fecha_mov');
         $detalle    = $request->input('detalle');
@@ -148,13 +149,19 @@ class MoveController extends Controller
         $image_path = $request->file('image');
         //Asigno valores
         // $movimiento             = Move::find($id);
-        $move->fecha_mov  = $fecha_mov;
+
         $move->detalle    = $detalle;
         $move->importe    = $importe;
         $move->conciliado = $conciliado;
         $move->tipo       = $tipo;
         $move->box_id     = $box_id;
         $move->concept_id = $concept_id;
+
+        if ($request->input('fecha_mov') == "") {
+            $move->fecha_mov = $fecha_ant;
+        } else {
+            $move->fecha_mov = $fecha_mov;
+        }
 
         //Si hay una imagen en el formulario
         if ($request->hasFile('image')) {

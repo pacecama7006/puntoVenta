@@ -14,7 +14,7 @@ class UsersExport implements FromView
     public function view(): View
     {
         return view('admin.user.users_excel', [
-            'users' => User::with('roles')->get(),
+            'users' => User::where('id', '<>', 1)->with('roles')->get(),
         ]);
     }
 }

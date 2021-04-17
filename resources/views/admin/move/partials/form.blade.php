@@ -1,7 +1,7 @@
 <div class="row mb-3{{ $errors->has('fecha_mov') ? ' has-error' : '' }}">
     {!! Form::label('fecha_mov', 'Fecha del movimiento', ['class' => 'col-sm-2 col-form-label']) !!}
     <div class="col-sm-10">
-        {!! Form::date('fecha_mov', null, ['class' => 'form-control', 'required' => 'required']) !!}
+        {!! Form::date('fecha_mov', null, ['class' => 'form-control']) !!}
         <small class="text-danger">{{ $errors->first('fecha_mov') }}</small>
     </div>
 </div>

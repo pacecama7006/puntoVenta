@@ -144,7 +144,7 @@ class RoleController extends Controller
     public function pdfRoles()
     {
         # code...
-        $roles = Role::all();
+        $roles = Role::where('id', '<>', 1)->get();
         $pdf   = PDF::loadView('admin.role.roles_pdf', compact('roles'));
         return $pdf->download('Listado_roles.pdf');
     }

@@ -14,7 +14,7 @@ class RolesExport implements FromView
     public function view(): View
     {
         return view('admin.role.roles_excel', [
-            'roles' => Role::all(),
+            'roles' => Role::where('id', '<>', 1)->get(),
         ]);
     }
 }

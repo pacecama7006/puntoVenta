@@ -88,11 +88,19 @@
 									</span>
 								</p>
 							</div>
-							@if ($product->status == 'ACTIVE')
-								<button class="btn btn-success btn-block">{{ $product->status }}</button>
-							@else
-								<button class="btn btn-danger btn-block">{{ $product->status }}</button>
-							@endif
+							@can('products.status')
+								@if ($product->status == 'ACTIVE')
+								{{-- <button class="btn btn-success btn-block">{{ $product->status }}</button> --}}
+									<a class="btn btn-success btn-block" href="{{route('products.status', $product)}}">
+	                                    Activo <i class="fas fa-check"></i>
+	                                </a>
+								@else
+									{{-- <button class="btn btn-danger btn-block">{{ $product->status }}</button> --}}
+									<a class="btn btn-danger btn-block" href="{{route('products.status', $product)}}">
+                                        Desactivado <i class="fas fa-times"></i>
+                                    </a>
+								@endif
+							@endcan
 			    		</div>
 
 

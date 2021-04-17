@@ -117,7 +117,7 @@
 												<a class="jsgrid-button jsgrid-edit-button" href="{{ route('purchases.pdf_detalle', $purchase) }}" title="Exportar Pdf"><i class="far fa-file-pdf"></i></a>
 											@endcan
 											@can('purchases.excel_detalle')
-												<a class="jsgrid-button jsgrid-edit-button" href="{{ route('purchases.excel_detalle, $purchase') }}" title="Exportar Excel"><i class="fas fa-file-excel"></i></a>
+												<a class="jsgrid-button jsgrid-edit-button" href="{{ route('purchases.excel_detalle', $purchase) }}" title="Exportar Excel"><i class="fas fa-file-excel"></i></a>
 											@endcan
 										</td>
 									</tr>

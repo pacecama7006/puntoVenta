@@ -104,9 +104,9 @@ class CategoryController extends Controller
     {
         //
         $request->validate([
-            'name'        => "required|string|unique:categories,$category->id",
+            'name'        => "required|string|unique:categories,name,$category->id",
             'description' => 'required',
-            'slug'        => "required|string|unique:categories,slug,$category->id",
+            'slug'        => "required|unique:categories,slug,$category->id",
         ]);
 
         $category->update($request->all());

@@ -51,7 +51,7 @@
 					<td> {{ number_format($product->sell_price,2,'.',',') }}</td>
 					<td>
 						@if ($product->image)
-							<img src="{{ Storage::url($product->image) }}" alt="producto" class="img-lg rounded-circle mb-3">
+							<img src="{{ Storage::url($product->image) }}" width="100px" alt="producto" class="img-lg rounded-circle mb-3">
 						@else
 							No existe imágen
 						@endif

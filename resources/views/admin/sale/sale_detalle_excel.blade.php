@@ -37,6 +37,7 @@
 					<td></td>
 					<td></td>
 					<td></td>
+					<td></td>
 					<td>{{ $detalle->product->name }}</td>
 					<td>{{ $detalle->quantity }}</td>
 					<td>{{ $detalle->price }}</td>
