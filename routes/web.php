@@ -3,6 +3,7 @@
 use App\Http\Controllers\BoxController;
 use App\Http\Controllers\BusinessController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ChartDataController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ConceptController;
 use App\Http\Controllers\HomeController;
@@ -37,6 +38,13 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('ptoventa', [HomeController::class, 'index'])->name('ptoventa');
+Route::get('graficas', function () {
+    return view('ptoventa4');
+});
+Route::middleware(['auth:sanctum', 'verified'])->get('graficas/grafica', [ChartDataController::class, 'getDatosVentasDiarias'])->name('grafica');
+Route::middleware(['auth:sanctum', 'verified'])->get('graficas/grafica_venta_mes', [ChartDataController::class, 'getVentasMensualesDatos'])->name('grafica_venta_mes');
+Route::middleware(['auth:sanctum', 'verified'])->get('graficas/grafica', [ChartDataController::class, 'getDatosVentasDiarias'])->name('grafica');
+Route::middleware(['auth:sanctum', 'verified'])->get('graficas/grafica_compra_mes', [ChartDataController::class, 'getComprasMensualData'])->name('grafica_compra_mes');
 
 //Rutas para la generación de reportes de ventas
 Route::prefix('sales')->group(function () {
