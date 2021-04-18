@@ -112,18 +112,32 @@ CREATE TRIGGER MOVES_AU AFTER UPDATE
     ON
         moves FOR EACH ROW
     BEGIN
-        IF NEW.tipo = 'INGRESO' THEN
+        IF OLD.tipo = 'INGRESO' AND NEW.tipo = 'INGRESO' THEN
             UPDATE
                 boxes
             SET
                 saldo = saldo -OLD.importe + NEW.importe
             WHERE
                 boxes.id = NEW.box_id;
-        ELSEIF NEW.tipo = 'EGRESO' THEN
+        ELSEIF OLD.tipo = 'INGRESO' AND NEW.tipo = 'EGRESO' THEN
+            UPDATE
+                boxes
+            SET
+                saldo = saldo -OLD.importe - NEW.importe
+            WHERE
+                boxes.id = NEW.box_id;
+        ELSEIF OLD.tipo = 'EGRESO'  AND NEW.tipo = 'EGRESO' THEN
             UPDATE
                 boxes
             SET
                 saldo = saldo + OLD.importe - NEW.importe
+            WHERE
+                boxes.id = NEW.box_id;
+        ELSEIF OLD.tipo = 'EGRESO'  AND NEW.tipo = 'INGRESO' THEN
+            UPDATE
+                boxes
+            SET
+                saldo = saldo + OLD.importe + NEW.importe
             WHERE
                 boxes.id = NEW.box_id;
         END IF;
@@ -131,6 +145,7 @@ CREATE TRIGGER MOVES_AU AFTER UPDATE
     END; |
 DELIMITER
     ;
+
 
 -- Triger para cuando elimino un movimiento a la caja, ya sea de ingreso o de egreso
 DELIMITER

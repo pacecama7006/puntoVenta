@@ -76,7 +76,7 @@
 										<th scope="row">{{ $box->id }}</th>
 										<td> {{ $box->name  }} </td>
 										<td> {{ $box->user->name }} </td>
-										<td> {{ $box->user->saldo }} </td>
+										<td>$ {{ number_format($box->saldo,2,'.',',') }} </td>
 										<td style="width: 50px;">
 											{!! Form::open(['route' => ['boxes.destroy', $box], 'method'=> 'delete']) !!}
 												@can('boxes.show')
