@@ -103,7 +103,7 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">
-                        <i class="fas fa-envelope"></i>
+                        <i class="fas fa-boxes"></i>
                         Productos más vendidos
                     </h4>
                     <div class="table-responsive">

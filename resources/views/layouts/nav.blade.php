@@ -278,22 +278,6 @@
         </ul>
       </div>
     </li>
-
-
-    <li class="nav-item">
-      <a class="nav-link" data-toggle="collapse" href="#e-commerce" aria-expanded="false" aria-controls="e-commerce">
-        <i class="fas fa-shopping-cart menu-icon"></i>
-        <span class="menu-title">E-commerce</span>
-        <i class="menu-arrow"></i>
-      </a>
-      <div class="collapse" id="e-commerce">
-        <ul class="nav flex-column sub-menu">
-          <li class="nav-item"> <a class="nav-link" href="{{ asset('melody/pages/samples/invoice.html') }}"> Invoice </a></li>
-          <li class="nav-item"> <a class="nav-link" href="{{ asset('melody/pages/samples/pricing-table.html') }}"> Pricing Table </a></li>
-          <li class="nav-item"> <a class="nav-link" href="{{ asset('melody/pages/samples/orders.html') }}"> Orders </a></li>
-        </ul>
-      </div>
-    </li>
     <li class="nav-item">
       <a class="nav-link" href="{{ asset('melody/pages/documentation.html') }}">
         <i class="far fa-file-alt menu-icon"></i>

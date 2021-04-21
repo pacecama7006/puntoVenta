@@ -55,10 +55,10 @@
 </div>
 @endsection
 @section('js')
-	<script type="text/javascript" src="{{ asset('melody/js/data-table.js') }}"></script>
-	<!-- Custom js for this page-->
-  <script src="{{ asset('melody/js/alerts.js') }}"></script>
-  <script src="{{ asset('melody/js/avgrund.js') }}"></script>
-  <script src="{{ asset('js/detalles2.js') }}"></script>
-  {{-- <script src="{{ asset('js/detalles.js') }}"></script> --}}
+<script type="text/javascript" src="{{ asset('melody/js/data-table.js') }}"></script>
+<!-- Custom js for this page-->
+<script src="{{ asset('melody/js/alerts.js') }}"></script>
+<script src="{{ asset('melody/js/avgrund.js') }}"></script>
+<script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
+<script src="{{ asset('js/detalleCompra.js') }}"></script>
 @endsection

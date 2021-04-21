@@ -46,56 +46,6 @@
     <small class="help-block">Sólo imágenes o PDF</small>
     <small class="text-danger">{{ $errors->first('picture') }}</small>
 </div>
-
-{{-- <div class="row mb-3{{ $errors->has('num_compra ') ? ' has-error' : '' }}">
-    {!! Form::label('num_compra ', 'Num. de Compra:', ['class' => 'col-sm-2 col-form-label']) !!}
-    <div class="col-sm-10">
-        {!! Form::number('num_compra ', null, ['class' => 'form-control', 'placeholder' =>'Indique el número de compra']) !!}
-        <small class="text-danger">{{ $errors->first('num_compra ') }}</small>
-    </div>
-</div>
-<div class="row mb-3{{ $errors->has('purchase_date') ? ' has-error' : '' }}">
-    {!! Form::label('purchase_date', 'Fecha de la compra', ['class' => 'col-sm-2 col-form-label']) !!}
-    <div class="col-sm-10">
-        {!! Form::date('purchase_date', null, ['class' => 'form-control']) !!}
-        <small class="text-danger">{{ $errors->first('purchase_date') }}</small>
-    </div>
-</div>
-<div class="row mb-3{{ $errors->has('provider_id') ? ' has-error' : '' }}">
-    {!! Form::label('provider_id', 'Seleccione un Proveedor', ['class' => 'col-sm-2 col-form-label']) !!}
-    <div class="col-sm-10">
-        {!! Form::select('provider_id', $providers, null, ['id' => 'provider_id', 'class' => 'form-select form-select-lg']) !!}
-        <small class="text-danger">{{ $errors->first('provider_id') }}</small>
-    </div>
-</div>
-<div class="row mb-3{{ $errors->has('product_id') ? ' has-error' : '' }}">
-    {!! Form::label('product_id', 'Seleccione un Producto', ['class' => 'col-sm-2 col-form-label']) !!}
-    <div class="col-sm-10">
-        {!! Form::select('product_id', $products, null, ['id' => 'product_id', 'class' => 'form-select form-select-lg']) !!}
-        <small class="text-danger">{{ $errors->first('product_id') }}</small>
-    </div>
-</div>
-<div class="row mb-3{{ $errors->has('quantity') ? ' has-error' : '' }}">
-    {!! Form::label('quantity', 'Cantidad:', ['class' => 'col-sm-2 col-form-label']) !!}
-    <div class="col-sm-10">
-        {!! Form::number('quantity', null, ['class' => 'form-control', 'placeholder' =>'cantidad de producto (s)...']) !!}
-        <small class="text-danger">{{ $errors->first('quantity') }}</small>
-    </div>
-</div>
-<div class="row mb-3{{ $errors->has('price') ? ' has-error' : '' }}">
-    {!! Form::label('price', 'Precio:', ['class' => 'col-sm-2 col-form-label']) !!}
-    <div class="col-sm-10">
-        {!! Form::number('price', null, ['class' => 'form-control', 'placeholder' =>'Precio de compra']) !!}
-        <small class="text-danger">{{ $errors->first('price') }}</small>
-    </div>
-</div>
-<div class="row mb-3{{ $errors->has('tax') ? ' has-error' : '' }}">
-    {!! Form::label('tax', 'Impuesto:', ['class' => 'col-sm-2 col-form-label']) !!}
-    <div class="col-sm-10">
-        {!! Form::number('tax', null, ['class' => 'form-control']) !!}
-        <small class="text-danger">{{ $errors->first('tax') }}</small>
-    </div>
-</div> --}}
 <div class="btn-group float-end me-5 mb-4">
     <button class="btn btn-primary float-end me-2" type="button" id="agregar">
         Agregar producto

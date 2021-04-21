@@ -88,7 +88,6 @@ class ProductController extends Controller
         //Si hay una imagen en el formulario
         if ($request->hasFile('image')) {
             $image_path_name = time() . $image_path->getClientOriginalName();
-            // Storage::put('images', $image_path_name, File::get($image_path));
             Storage::disk('productos')->put($image_path_name, File::get($image_path));
             $producto->image = 'productos/' . $image_path_name;
         }
@@ -101,10 +100,10 @@ class ProductController extends Controller
             ]);
         }
 
-        if ($request->input('bar_code') == '') {
-            $producto->update([
-                'bar_code' => $producto->id . '-' . substr($producto->category->name, 0, 3),
-            ]);
+        if ($request->bar_code == "") {
+            $bar_code     = $producto->id;
+            $bar_code_nvo = str_pad($bar_code, 8, "0", STR_PAD_LEFT);
+            $producto->update(['bar_code' => $bar_code_nvo]);
         }
 
         return redirect()->route('products.index')->with(['message' => 'El registro se ha guardado exitosamente.']);
@@ -198,7 +197,6 @@ class ProductController extends Controller
         # Actualizo registros en la bd
         $producto->update();
 
-        // $product->update($request->all());
         return redirect()->route('products.index')->with(['message' => 'El registro se actualizó con éxito.']);
     }
 
@@ -252,7 +250,7 @@ class ProductController extends Controller
         return Excel::download(new ProductsExport, 'Listado_productos.xlsx');
     }
 
-    //Función que permite obtener datos del lector de código de barras
+    //Función que permite obtener datos del lector de código de barras por el bar_code
     public function get_products_by_barcode(Request $request)
     {
 
@@ -263,19 +261,10 @@ class ProductController extends Controller
         return response()->json($producto);
     }
 
-    /*public function get_products_by_barcode(Request $request)
-    {
-
-    if ($$request->ajax()) {
-    $products = Product::where('bar_code', $request->bar_code)->firstOrFail();
-    return response()->json($products);
-    }
-    }*/
-
+    //Función que permite obtener datos del lector de código de barras por el id
     public function get_products_by_id(Request $request)
     {
         if ($request->ajax()) {
-            //$products = Product::findOrFail($request->id);
             $producto = Product::where('id', $request->id)->get();
             return response()->json($producto);
         }
