@@ -257,13 +257,10 @@ class ProductController extends Controller
     {
 
         if ($request->ajax()) {
-            $products = Product::where('code', $request->code)->firstOrFail();
-            return response()->json($products);
-            /*return response()->json([
-            'products' => $products,
-            ]);*/
-            // return response(json_encode($products), 200)->header('Content-type', 'text/plain');
+            $producto = Product::where('bar_code', $request->bar_code)->get();
         }
+
+        return response()->json($producto);
     }
 
     /*public function get_products_by_barcode(Request $request)
@@ -278,8 +275,9 @@ class ProductController extends Controller
     public function get_products_by_id(Request $request)
     {
         if ($request->ajax()) {
-            $products = Product::findOrFail($request->product_id);
-            return response()->json($products);
+            //$products = Product::findOrFail($request->id);
+            $producto = Product::where('id', $request->id)->get();
+            return response()->json($producto);
         }
     }
 

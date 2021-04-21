@@ -18,22 +18,18 @@
     <select id="product_id" name="product_id" class="form-select">
       <option selected>Menu de productos...</option>
       @foreach ($products as $product)
-            <option value="{{ $product->id }}_{{ $product->stock }}_{{ $product->sell_price }}">
+            <option value="{{ $product->id }}">
                 {{ $product->name }}
             </option>
           @endforeach
     </select>
-  </div>
-<div class="col-md-3">
-  <label for="code" class="form-label">Código de barras</label>
-  <input type="text" name="code" id="code" class="form-control" placeholder="" aria-describedby="helpId">
 </div>
-{{-- <div class="col-md-3{{ $errors->has('code') ? ' has-error' : '' }}">
-    {!! Form::label('code', 'Código de barras:', ['class' => 'form-label']) !!}
-    {!! Form::text('code', null, ['id' =>'code', 'name' => 'code', 'class' => 'form-control', 'aria-describedby' => 'helpId']) !!}
+<div class="col-md-3{{ $errors->has('bar_code') ? ' has-error' : '' }}">
+    {!! Form::label('bar_code', 'Código de barras:', ['class' => 'form-label']) !!}
+    {!! Form::text('bar_code', null, ['id' =>'bar_code', 'name' => 'bar_code', 'class' => 'form-control', 'aria-describedby' => 'helpId']) !!}
     <small class="text-muted">Campo opcional</small>
-    <small class="text-danger">{{ $errors->first('code') }}</small>
-</div> --}}
+    <small class="text-danger">{{ $errors->first('bar_code') }}</small>
+</div>
 <div class="col-md-3{{ $errors->has('stock') ? ' has-error' : '' }}">
     {!! Form::label('stock', 'Stock actual:', ['class' => 'form-label']) !!}
     {!! Form::text('stock', null, ['id' =>'stock', 'class' => 'form-control', 'disabled' => 'disabled']) !!}

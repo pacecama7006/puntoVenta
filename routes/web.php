@@ -11,6 +11,7 @@ use App\Http\Controllers\MoveController;
 use App\Http\Controllers\PrinterController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProviderController;
+use App\Http\Controllers\PruebaVentaController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\RoleController;
@@ -131,8 +132,10 @@ Route::prefix('change_status')->group(function () {
     Route::get('sales/{sale}', [SaleController::class, 'change_status'])->name('sales.status');
 });
 //Ruta para generar los códigos de barras
-Route::get('get_products_by_barcode', [ProductController::class, 'get_products_by_barcode'])->name('get_products_by_barcode');
+Route::get('/get_products_by_barcode/{bar_code}', [ProductController::class, 'get_products_by_barcode'])->name('get_products_by_barcode');
 
-Route::get('get_products_by_id', [ProductController::class, 'get_products_by_id'])->name('get_products_by_id');
+Route::get('/get_products_by_id/{product_id}', [ProductController::class, 'get_products_by_id'])->name('get_products_by_id');
 
 Route::get('print_barcode', [ProductController::class, 'print_barcode'])->name('print_barcode');
+
+Route::get('pruebaVenta', [PruebaVentaController::class, 'index']);

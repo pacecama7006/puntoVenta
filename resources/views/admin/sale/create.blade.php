@@ -24,13 +24,11 @@
 		<div class="col-12 grid-margin stretch-card">
 			{{-- Inicio de card --}}
 		  	<div class="card">
-		  		{{-- {!! Form::open(['method' => 'POST', 'route' => 'sales.store', 'class' => 'form-horizontal']) !!} --}}
-		  		{{-- Inicio card-body --}}
 			    <div class="card-body">
 					<div class="d-flex justify-content-between">
                         <h4 class="card-title">Registro de venta.</h4>
                     </div>
-                    {!! Form::open(['method' => 'POST', 'route' => 'sales.store', 'class' => 'row g-3']) !!}
+                    {!! Form::open(['method' => 'POST', 'route' => 'sales.store', 'class' => 'row g-3', 'id' =>'form_sale']) !!}
 
                     	@include('admin.sale.partials.form')
 
@@ -57,7 +55,8 @@
 @section('js')
 	<script type="text/javascript" src="{{ asset('melody/js/data-table.js') }}"></script>
 	<!-- Custom js for this page-->
-  <script src="{{ asset('melody/js/alerts.js') }}"></script>
-  <script src="{{ asset('melody/js/avgrund.js') }}"></script>
-  <script src="{{ asset('js/detalleVenta.js') }}"></script>
+	<script src="{{ asset('melody/js/alerts.js') }}"></script>
+	<script src="{{ asset('melody/js/avgrund.js') }}"></script>
+	<script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
+	<script src="{{ asset('js/detalleVenta.js') }}"></script>
 @endsection
