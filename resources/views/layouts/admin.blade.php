@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <html lang="es">
-
-
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
@@ -40,10 +38,10 @@
   <div class="container-scroller">
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row default-layout-navbar">
-      <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+      <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center overflow-hidden">
         {{-- <a class="navbar-brand brand-logo" href="index-2.html"><img src="{{ asset('melody/images/logo.svg') }}" alt="logo"/></a>
         <a class="navbar-brand brand-logo-mini" href="index-2.html"><img src="{{ asset('melody/images/logo-mini.svg') }}" alt="logo"/></a> --}}
-        <a class="navbar-brand brand-logo" href="{{ route('ptoventa') }}"><img src="{{ asset('img/sistemaventas.jpg') }}" alt="logo" /></a>
+        <a class="" href="{{ route('ptoventa') }}"><img src="{{ asset('img/logo/logoSipuvePrin124.jpg') }}" alt="Logo Sipuve"></a>
         {{-- <a class="navbar-brand brand-logo-mini" href="index-2.html"><img src="{{ asset('melody/images/logo-mini.svg') }}" alt="logo"/></a> --}}
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-stretch">
@@ -72,14 +70,12 @@
 
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
               @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
-                    <img class="h-8 w-8 rounded-full object-cover" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
-            @else
+                  <img class="h-8 w-8 rounded-full object-cover" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
+              @else
                 <span class="inline-flex rounded-md">
-                        {{ Auth::user()->name }}
-
-
+                  {{ Auth::user()->name }}
                 </span>
-            @endif
+              @endif
               {{-- <img src="{{ asset('melody/images/faces/face5.jpg') }}" alt="profile"/> --}}
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
@@ -156,6 +152,7 @@
         <!-- partial:partials/_footer.html -->
         <footer class="footer">
           <div class="d-sm-flex justify-content-center justify-content-sm-between">
+            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Desarrollado por IDS. Paulo Cesar Casillas Martínez.</span>
             <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2018. All rights reserved.</span>
             <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="far fa-heart text-danger"></i></span>
           </div>
