@@ -10,17 +10,22 @@
             {{ Auth::user()->name }}
           </p>
           <p class="designation">
-            Super Admin
+            @foreach (Auth::user()->roles as $rol)
+              {{ $rol->name }}
+            @endforeach
           </p>
         </div>
       </div>
     </li>
-    <li class="nav-item">
+    @if (Auth::user()->hasAnyRole(['SuperAdmin', 'Administrador']))
+      <li class="nav-item">
       <a class="nav-link" href="{{ route('ptoventa') }}">
         <i class="fa fa-home menu-icon"></i>
         <span class="menu-title">Dashboard</span>
       </a>
     </li>
+    @else
+    @endif
     @can('boxes.index')
       <li class="nav-item">
         <a class="nav-link" data-toggle="collapse" href="#caja" aria-expanded="false" aria-controls="caja">
@@ -169,9 +174,16 @@
         </a>
         <div class="collapse" id="compras">
           <ul class="nav flex-column sub-menu">
-            @can('purchases.index')
-              <li class="nav-item d-none d-lg-block"> <a class="nav-link" href="{{ route('purchases.index') }}">Listado</a></li>
-            @endcan
+            @if (Auth::user()->hasAnyRole('SuperAdmin', 'Administrador'))
+              @can('purchases.index')
+                <li class="nav-item d-none d-lg-block"> <a class="nav-link" href="{{ route('purchases.index') }}">Listado</a></li>
+              @endcan
+            @endif
+            @if (Auth::user()->hasRole('Comprador'))
+              @can('purchases.index')
+                <li class="nav-item d-none d-lg-block"> <a class="nav-link" href="{{ route('purchases.user_id', Auth::id() ) }}">Listado</a></li>
+              @endcan
+            @endif
             @can('purchases.create')
               <li class="nav-item"> <a class="nav-link" href="{{ route('purchases.create') }}">Crear</a></li>
             @endcan
@@ -197,6 +209,7 @@
         </div>
       </li>
     @endcan
+    @can('business.index')
     <li class="nav-item">
       <a class="nav-link" data-toggle="collapse" href="#configuracion" aria-expanded="false" aria-controls="configuracion">
         <i class="fas fa-cogs menu-icon"></i>
@@ -205,16 +218,13 @@
       </a>
       <div class="collapse" id="configuracion">
         <ul class="nav flex-column sub-menu">
-          @can('business.index')
-            <li class="nav-item d-none d-lg-block"> <a class="nav-link" href="{{ route('business.index') }}">Empresa</a></li>
-          @endcan
-          @can('printer.index')
-            <li class="nav-item"> <a class="nav-link" href="{{ route('printer.index') }}">Impresora</a>
+          <li class="nav-item d-none d-lg-block"> <a class="nav-link" href="{{ route('business.index') }}">Empresa</a></li>
+          <li class="nav-item"> <a class="nav-link" href="{{ route('printer.index') }}">Impresora</a>
           </li>
-          @endcan
         </ul>
       </div>
     </li>
+    @endcan
     @can('users.index')
       <li class="nav-item">
         <a class="nav-link" data-toggle="collapse" href="#usuarios" aria-expanded="false" aria-controls="usuarios">
@@ -253,6 +263,7 @@
         </div>
       </li>
     @endcan
+    @can('sales.reports.day')
     <li class="nav-item">
       <a class="nav-link" data-toggle="collapse" href="#reportes" aria-expanded="false" aria-controls="reportes">
         <i class="fas fa-clipboard-list menu-icon"></i>
@@ -261,28 +272,18 @@
       </a>
       <div class="collapse" id="reportes">
         <ul class="nav flex-column sub-menu">
-          @can('sales.reports.day')
-            <li class="nav-item d-none d-lg-block"> <a class="nav-link" href="{{ route('sales.reports.day') }}">Ventas por día</a></li>
-          @endcan
-          @can('sales.reports.date')
-            <li class="nav-item"> <a class="nav-link" href="{{ route('sales.reports.date') }}">Ventas por fecha</a>
+          <li class="nav-item d-none d-lg-block"> <a class="nav-link" href="{{ route('sales.reports.day') }}">Ventas por día</a></li>
+          <li class="nav-item"> <a class="nav-link" href="{{ route('sales.reports.date') }}">Ventas por fecha</a>
           </li>
-          @endcan
-          @can('purchases.reports.purchases.day')
-            <li class="nav-item d-none d-lg-block"> <a class="nav-link" href="{{ route('purchases.reports.purchases.day') }}">Compras por día</a></li>
-          @endcan
-          @can('purchases.reports.purchases.date')
-            <li class="nav-item"> <a class="nav-link" href="{{ route('purchases.reports.purchases.date') }}">Compras por fecha</a>
+          <li class="nav-item d-none d-lg-block"> <a class="nav-link" href="{{ route('purchases.reports.purchases.day') }}">Compras por día</a></li>
+          <li class="nav-item"> <a class="nav-link" href="{{ route('purchases.reports.purchases.date') }}">Compras por fecha</a>
           </li>
-          @endcan
+          <li class="nav-item d-none d-lg-block"> <a class="nav-link" href="{{ route('boxes.reports.corte_diario') }}">Corte de caja por día</a></li>
+          <li class="nav-item"> <a class="nav-link" href="{{ route('boxes.reports.corte_por_fecha') }}">Corte de caja por fecha</a>
+          </li>
         </ul>
       </div>
     </li>
-    <li class="nav-item">
-      <a class="nav-link" href="{{ asset('melody/pages/documentation.html') }}">
-        <i class="far fa-file-alt menu-icon"></i>
-        <span class="menu-title">Documentation</span>
-      </a>
-    </li>
+    @endcan
   </ul>
 </nav>

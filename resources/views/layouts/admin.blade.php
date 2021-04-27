@@ -6,12 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>@yield('title')</title>
   <!-- plugins:css -->
-  {{-- Así vienen por defecto los links en la plantilla melody, pero al modificar su
-  ubicación, agrego melody al principio. Ya que muevo la carpeta a public --}}
-  {{-- <link rel="stylesheet" href="vendors/iconfonts/font-awesome/css/all.min.css">
-  <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
-  <link rel="stylesheet" href="vendors/css/vendor.bundle.addons.css"> --}}
-
   {{-- Esta es la forma de hacerlo con laravel-blade --}}
   <link rel="stylesheet" href="{{ asset('melody/vendors/iconfonts/font-awesome/css/all.min.css') }}">
   <link rel="stylesheet" href="{{ asset('melody/vendors/css/vendor.bundle.base.css') }}">
@@ -39,29 +33,16 @@
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row default-layout-navbar">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center overflow-hidden">
-        {{-- <a class="navbar-brand brand-logo" href="index-2.html"><img src="{{ asset('melody/images/logo.svg') }}" alt="logo"/></a>
-        <a class="navbar-brand brand-logo-mini" href="index-2.html"><img src="{{ asset('melody/images/logo-mini.svg') }}" alt="logo"/></a> --}}
-        <a class="" href="{{ route('ptoventa') }}"><img src="{{ asset('img/logo/logoSipuvePrin124.jpg') }}" alt="Logo Sipuve"></a>
-        {{-- <a class="navbar-brand brand-logo-mini" href="index-2.html"><img src="{{ asset('melody/images/logo-mini.svg') }}" alt="logo"/></a> --}}
+        @if (Auth::user()->hasAnyRole('SuperAdmin','Administrador'))
+          <a class="" href="{{ route('ptoventa') }}"><img src="{{ asset('img/logo/logoSipuvePrin124.jpg') }}" alt="Logo Sipuve"></a>
+        @else
+          <a class="" href="#"><img src="{{ asset('img/logo/logoSipuvePrin124.jpg') }}" alt="Logo Sipuve"></a>
+        @endif
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-stretch">
         <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
           <span class="fas fa-bars"></span>
         </button>
-        <ul class="navbar-nav">
-          {{-- <li class="nav-item nav-search d-none d-md-flex">
-            <div class="nav-link">
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">
-                    <i class="fas fa-search"></i>
-                  </span>
-                </div>
-                <input type="text" class="form-control" placeholder="Search" aria-label="Search">
-              </div>
-            </div>
-          </li> --}}
-        </ul>
         <ul class="navbar-nav navbar-nav-right">
 
           @yield('create')
@@ -76,17 +57,18 @@
                   {{ Auth::user()->name }}
                 </span>
               @endif
-              {{-- <img src="{{ asset('melody/images/faces/face5.jpg') }}" alt="profile"/> --}}
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-              <a class="dropdown-item" href="{{ route('profile.show') }}">
+              @if (Auth::user()->hasAnyRole('SuperAdmin', 'Administrador'))
+                <a class="dropdown-item" href="{{ route('profile.show') }}">
                 <i class="fas fa-cog text-primary"></i>
                 Perfíl del usuario
               </a>
-              @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
-                  <x-jet-dropdown-link href="{{ route('api-tokens.index') }}">
-                      {{ __('API Tokens') }}
-                  </x-jet-dropdown-link>
+                @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
+                    <x-jet-dropdown-link href="{{ route('api-tokens.index') }}">
+                        {{ __('API Tokens') }}
+                    </x-jet-dropdown-link>
+                @endif
               @endif
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="{{ route('logout') }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Logout"
@@ -136,7 +118,7 @@
           </div>
         </div>
       </div>
-      {
+
       @yield('preference')
       <!-- partial -->
       <!-- partial:partials/_sidebar.html -->
@@ -145,9 +127,6 @@
       <!-- partial -->
       <div class="main-panel">
         @yield('content')
-        {{-- <div class="content-wrapper">
-
-        </div> --}}
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->
         <footer class="footer">
@@ -164,9 +143,6 @@
     <!-- page-body-wrapper ends -->
   </div>
   <!-- container-scroller -->
-
-
-
 
 {{-- <script type="text/javascript" src="{{ asset('melody/js/chart.js') }}"></script>
 <script type="text/javascript" src="{{ asset('melody/js/chartist.js') }}"></script> --}}
@@ -187,12 +163,6 @@
   <!-- Plugin js for this page-->
   <!-- End plugin js for this page-->
   <!-- inject:js -->
-  {{-- <script src="js/off-canvas.js"></script>
-  <script src="js/hoverable-collapse.js"></script>
-  <script src="js/misc.js"></script>
-  <script src="js/settings.js"></script>
-  <script src="js/todolist.js"></script> --}}
-
   <script src="{{ asset('melody/js/off-canvas.js') }}"></script>
   <script src="{{ asset('melody/js/hoverable-collapse.js') }}"></script>
   <script src="{{ asset('melody/js/misc.js') }}"></script>
@@ -200,11 +170,8 @@
   <script src="{{ asset('melody/js/todolist.js') }}"></script>
   <!-- endinject -->
   <!-- Custom js for this page-->
-  {{-- <script src="js/dashboard.js"></script> --}}
-
   <script src="{{ asset('melody/js/dashboard.js') }}"></script>
   <!-- End custom js for this page-->
-
   @yield('js')
 </body>
 
