@@ -1,10 +1,15 @@
-<div class="row mb-3{{ $errors->has('fecha_mov') ? ' has-error' : '' }}">
-    {!! Form::label('fecha_mov', 'Fecha del movimiento', ['class' => 'col-sm-2 col-form-label']) !!}
-    <div class="col-sm-10">
-        {!! Form::date('fecha_mov', $fecha_mov, ['class' => 'form-control', 'disabled' => 'disabled']) !!}
-        <small class="text-danger">{{ $errors->first('fecha_mov') }}</small>
+@if (Route::currentRouteName()=='moves.create')
+    <div class="row mb-3{{ $errors->has('fecha_mov') ? ' has-error' : '' }}">
+        {!! Form::label('fecha_mov', 'Fecha del movimiento', ['class' => 'col-sm-2 col-form-label']) !!}
+        <div class="col-sm-10">
+            {!! Form::date('fecha_mov', $fecha_mov, ['class' => 'form-control', 'disabled' => 'disabled']) !!}
+            <small class="text-danger">{{ $errors->first('fecha_mov') }}</small>
+        </div>
     </div>
-</div>
+@else
+
+@endif
+
 <div class="row mb-3{{ $errors->has('box_id') ? ' has-error' : '' }}">
     {!! Form::label('box_id', 'Seleccione la caja en la que se realiza el movimiento:', ['class' => 'col-sm-2 col-form-label']) !!}
     <div class="col-sm-10">

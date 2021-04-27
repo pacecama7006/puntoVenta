@@ -140,7 +140,7 @@ class MoveController extends Controller
         //Obtengo los datos del formulario
         $fecha_ant = $move->fecha_mov;
         // $id         = (int) $request->input('id');
-        $fecha_mov  = $request->input('fecha_mov');
+        // $fecha_mov  = $request->input('fecha_mov');
         $detalle    = $request->input('detalle');
         $importe    = $request->input('importe');
         $conciliado = (int) $request->input('conciliado');
@@ -157,12 +157,7 @@ class MoveController extends Controller
         $move->tipo       = $tipo;
         $move->box_id     = $box_id;
         $move->concept_id = $concept_id;
-
-        if ($request->input('fecha_mov') == "") {
-            $move->fecha_mov = $fecha_ant;
-        } else {
-            $move->fecha_mov = $fecha_mov;
-        }
+        $move->fecha_mov  = $fecha_ant;
 
         //Si hay una imagen en el formulario
         if ($request->hasFile('image')) {
