@@ -27,7 +27,7 @@ class StoreRequest extends FormRequest
             //
             'name'       => 'required|string|max:255|unique:providers',
             'email'      => 'required|email|string|max:200|unique:providers',
-            'rfc_number' => 'required|string|max:15|min:12|unique:providers',
+            'rfc_number' => 'string|max:15|min:12|unique:providers',
             'adress'     => 'required|string|max:255',
             'phone'      => 'required|string|max:15|min:12|unique:providers',
         ];

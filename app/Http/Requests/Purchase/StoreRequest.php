@@ -25,8 +25,8 @@ class StoreRequest extends FormRequest
     {
         return [
             //
-            'purchase_date' => 'required|date',
-            'num_compra'    => 'required|integer|unique:purchases,num_compra',
+            'purchase_date' => 'date',
+            'num_compra'    => 'integer|unique:purchases,num_compra',
             'provider_id'   => 'integer|required|exists:providers,id',
         ];
     }

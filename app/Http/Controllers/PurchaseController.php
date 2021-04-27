@@ -9,9 +9,14 @@ use App\Http\Requests\Purchase\UpdateRequest;
 use App\Models\Product;
 use App\Models\Provider;
 use App\Models\Purchase;
+use App\Models\User;
 use Barryvdh\DomPDF\Facade as PDF;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
+use Mike42\Escpos\PrintConnectors\WindowsPrintConnector;
+use Mike42\Escpos\Printer;
 
 class PurchaseController extends Controller
 {
@@ -19,6 +24,7 @@ class PurchaseController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+
         $this->middleware('can:purchases.index')->only('index');
         $this->middleware('can:purchases.edit')->only('edit', 'update');
         $this->middleware('can:purchases.create')->only('create', 'store');
@@ -27,6 +33,7 @@ class PurchaseController extends Controller
         $this->middleware('can:purchases.pdf_detalle')->only('pdf_detalle');
         $this->middleware('can:purchases.upload')->only('upload');
         $this->middleware('can:purchases.status')->only('change_status');
+        // $this->middleware('can:purchases.user_id')->only('purchases_by_user_id');
 
     }
     /**
@@ -36,7 +43,7 @@ class PurchaseController extends Controller
      */
     public function index()
     {
-        //
+        //Compras para el superAdmin y para el Administrador
         $purchases = Purchase::get();
 
         return view('admin.purchase.index', compact('purchases'));
@@ -50,10 +57,15 @@ class PurchaseController extends Controller
     public function create()
     {
         //
-        $providers = Provider::pluck('name', 'id');
-        $products  = Product::where('status', 'ACTIVE')->pluck('name', 'id');
+        $num_compra   = DB::table('purchases')->max('num_compra');
+        $num_compra   = $num_compra + 1;
+        $fecha_compra = Carbon::now('America/Mexico_City');
+        $providers    = Provider::pluck('name', 'id');
+        //$products     = Product::where('status', 'ACTIVE')->pluck('name', 'id');
+        $products = Product::where('status', 'ACTIVE')->get();
+        // dd($products->keys());
         // $providers = Provider::get();
-        return view('admin.purchase.create', compact('providers', 'products'));
+        return view('admin.purchase.create', compact('providers', 'products', 'num_compra', 'fecha_compra'));
     }
 
     /**
@@ -68,15 +80,17 @@ class PurchaseController extends Controller
         $user_id = \Auth::user()->id;
         // $user_id = Auth::user()->id;
         //Con Carbon recupero dia, hora y fecha
-        // $purchase_date = Carbon::now('America/Mexico_City');
-
+        $purchase_date = Carbon::now('America/Mexico_City');
+        $num_compra    = DB::table('purchases')->max('num_compra');
+        $num_compra    = $num_compra + 1;
+        //dd($num_compra);
         //Traigo datos del formulario
-        $purchase_date = $request->input('purchase_date');
-        $num_compra    = $request->input('num_compra');
-        $tax           = $request->input('tax');
-        $total         = $request->input('total');
-        $provider_id   = $request->input('provider_id');
-        $image_path    = $request->input('picture');
+        //$purchase_date = $request->input('purchase_date');
+        //$num_compra  = $request->input('num_compra');
+        $tax         = $request->input('tax');
+        $total       = $request->input('total');
+        $provider_id = $request->input('provider_id');
+        $image_path  = $request->input('picture');
         // dd($image_path);
         //asigno valores al objeto
         $compra                = new Purchase();
@@ -111,7 +125,13 @@ class PurchaseController extends Controller
         $compra->purchaseDetails()->createMany($results);
         $compra->products()->attach($results);
 
-        return redirect()->route('purchases.index')->with(['message' => 'El registro se ha guardado exitosamente.']);
+        if (\Auth::user()->hasAnyRole('SuperAdmin', 'Administrador')) {
+            return redirect()->route('purchases.index')->with(['message' => 'El registro se ha guardado exitosamente.']);
+        }
+        if (\Auth::user()->hasRole('Comprador')) {
+            return redirect()->route('purchases.user_id', $user_id)->with(['message' => 'El registro se ha guardado exitosamente.']);
+        }
+
     }
 
     /**
@@ -258,6 +278,38 @@ class PurchaseController extends Controller
     public function export()
     {
         return Excel::download(new PurchasesExport, 'Listado_compras.xlsx');
+    }
+
+    public function purchases_by_user_id(User $user)
+    {
+        # code...
+        $purchases_com = Purchase::where('user_id', $user->id)->get();
+        return view('admin.purchase.index', compact('purchases_com'));
+    }
+
+    function print(Purchase $purchase) {
+        try {
+            $subtotal        = 0;
+            $purchaseDetails = $purchase->purchaseDetails;
+            foreach ($purchaseDetails as $purchaseDetails) {
+                $subtotal += $purchaseDetails->quantity * $purchaseDetails->price;
+            }
+            //Se crea una variable con el nombre de la impresora
+            $printer_name = "TM20";
+            $connector    = new WindowsPrintConnector($printer_name);
+            $printer      = new Printer($connector);
+            //Aquí tendría que meter el código que se imprime, queda pendiente, lo que dejo
+            //Es un ejemplo
+            $printer->text("$ 9,95\n");
+            //Aquí se corta la impresión
+            $printer->cut();
+            $printer->close();
+
+            return redirect()->back();
+
+        } catch (\Throwable $th) {
+            return redirect()->back();
+        }
     }
 
 }

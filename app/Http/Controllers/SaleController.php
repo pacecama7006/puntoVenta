@@ -10,7 +10,9 @@ use App\Models\Client;
 use App\Models\Product;
 use App\Models\Sale;
 use Barryvdh\DomPDF\Facade as PDF;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 use Mike42\Escpos\PrintConnectors\WindowsPrintConnector;
 use Mike42\Escpos\Printer;
@@ -49,10 +51,13 @@ class SaleController extends Controller
     public function create()
     {
         //
-        $clients = Client::pluck('name', 'id');
+        $num_vta   = DB::table('sales')->max('num_vta');
+        $num_vta   = $num_vta + 1;
+        $fecha_vta = Carbon::now('America/Mexico_City');
+        $clients   = Client::pluck('name', 'id');
         //$products = Product::pluck('name', 'id');
         $products = Product::get();
-        return view('admin.sale.create', compact('clients', 'products'));
+        return view('admin.sale.create', compact('clients', 'products', 'num_vta', 'fecha_vta'));
     }
 
     /**
@@ -66,9 +71,29 @@ class SaleController extends Controller
         //
         $user_id = \Auth::user()->id;
         // $user_id = Auth::user()->id;
-        $sale = Sale::create($request->all() + [
-            'user_id' => $user_id,
-        ]);
+        $num_vta   = DB::table('sales')->max('num_vta');
+        $num_vta   = $num_vta + 1;
+        $fecha_vta = Carbon::now('America/Mexico_City');
+        //Traigo datos del formulario
+        $tax       = $request->input('tax');
+        $total     = $request->input('total');
+        $client_id = $request->input('client_id');
+        //Creo la compra y asigno valores
+        $sale            = new Sale();
+        $sale->sale_date = $fecha_vta;
+        $sale->num_vta   = $num_vta;
+        $sale->user_id   = $user_id;
+        $sale->tax       = $tax;
+        $sale->total     = $total;
+        $sale->client_id = $client_id;
+        //Guardo los cambios
+        $sale->save();
+
+        /*$sale = Sale::create($request->all() + [
+        'user_id' => $user_id,
+        'sale_date' => $fecha_vta,
+        'num_vta '  => $num_vta,
+        ]);*/
 
         foreach ($request->product_id as $key => $product) {
             # code...
@@ -197,7 +222,7 @@ class SaleController extends Controller
             $printer      = new Printer($connector);
             //Aquí tendría que meter el código que se imprime, queda pendiente, lo que dejo
             //Es un ejemplo
-            $printer->text("€ 9,95\n");
+            $printer->text("$ 9,95\n");
             //Aquí se corta la impresión
             $printer->cut();
             $printer->close();

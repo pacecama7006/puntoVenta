@@ -25,8 +25,8 @@ class StoreRequest extends FormRequest
     {
         return [
             //
-            'sale_date' => 'required|date',
-            'num_vta'   => 'required|integer|unique:sales,num_vta',
+            'sale_date' => 'date',
+            'num_vta'   => 'integer|unique:sales,num_vta',
             'client_id' => 'integer|required|exists:clients,id',
         ];
     }

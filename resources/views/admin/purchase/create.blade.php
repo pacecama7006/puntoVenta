@@ -1,7 +1,19 @@
 @extends('layouts.admin')
 @section('title', 'Compras/registrar')
 @section('estilos')
-	{{-- expr --}}
+	<link rel="stylesheet" type="text/css" href="{{ asset('select2-develop/dist/css/select2.min.css') }}">
+	<style type="text/css">
+	.select2-container .select2-selection--single {
+	    box-sizing: border-box;
+	    cursor: pointer;
+	    display: block;
+	    /*height: 28px;*/
+	    padding-top: 2px;
+	    height: 35px;
+	    user-select: none;
+	    -webkit-user-select: none;
+	}
+	</style>
 @endsection
 @section('preference')
 	{{-- expr --}}
@@ -24,8 +36,6 @@
 		<div class="col-12 grid-margin stretch-card">
 			{{-- Inicio de card --}}
 		  	<div class="card">
-		  		{{-- {!! Form::open(['method' => 'POST', 'route' => 'purchases.store', 'class' => 'form-horizontal']) !!} --}}
-		  		{{-- Inicio card-body --}}
 			    <div class="card-body">
 					<div class="d-flex justify-content-between">
                         <h4 class="card-title">Registro de compra.</h4>
@@ -55,10 +65,12 @@
 </div>
 @endsection
 @section('js')
-<script type="text/javascript" src="{{ asset('melody/js/data-table.js') }}"></script>
+{{-- <script type="text/javascript" src="{{ asset('melody/js/data-table.js') }}"></script> --}}
 <!-- Custom js for this page-->
-<script src="{{ asset('melody/js/alerts.js') }}"></script>
-<script src="{{ asset('melody/js/avgrund.js') }}"></script>
+{{-- <script src="{{ asset('melody/js/alerts.js') }}"></script>
+<script src="{{ asset('melody/js/avgrund.js') }}"></script> --}}
 <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
-<script src="{{ asset('js/detalleCompra.js') }}"></script>
+{{-- <script src="{{ asset('js/detalleCompra.js') }}"></script> --}}
+<script type="text/javascript" src="{{ asset('js/detalleCompra.js') }}"></script>
+<script type="text/javascript" src="{{ asset('select2-develop/dist/js/select2.min.js') }}"></script>
 @endsection

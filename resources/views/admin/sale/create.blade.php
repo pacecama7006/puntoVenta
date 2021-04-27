@@ -1,7 +1,19 @@
 @extends('layouts.admin')
 @section('title', 'Ventas/registrar')
 @section('estilos')
-	{{-- <link rel="stylesheet" href="{{ asset('select/dist/css/bootstrap-select.min.css') }}"> --}}
+	<link rel="stylesheet" type="text/css" href="{{ asset('select2-develop/dist/css/select2.min.css') }}">
+	<style type="text/css">
+	.select2-container .select2-selection--single {
+	    box-sizing: border-box;
+	    cursor: pointer;
+	    display: block;
+	    /*height: 28px;*/
+	    padding-top: 2px;
+	    height: 35px;
+	    user-select: none;
+	    -webkit-user-select: none;
+	}
+	</style>
 @endsection
 @section('preference')
 	{{-- expr --}}
@@ -30,9 +42,9 @@
                     </div>
                     {!! Form::open(['method' => 'POST', 'route' => 'sales.store', 'class' => 'row g-3', 'id' =>'form_sale']) !!}
 
-                    	@include('admin.sale.partials.form')
+	                    	@include('admin.sale.partials.form')
 
-			    {{-- fin card-body --}}
+				    {{-- fin card-body --}}
 				</div>
 				<div class="card-footer">
 					@can('sales.create')
@@ -53,10 +65,11 @@
 </div>
 @endsection
 @section('js')
-	<script type="text/javascript" src="{{ asset('melody/js/data-table.js') }}"></script>
+	{{-- <script type="text/javascript" src="{{ asset('melody/js/data-table.js') }}"></script> --}}
 	<!-- Custom js for this page-->
-	<script src="{{ asset('melody/js/alerts.js') }}"></script>
-	<script src="{{ asset('melody/js/avgrund.js') }}"></script>
+	{{-- <script src="{{ asset('melody/js/alerts.js') }}"></script>
+	<script src="{{ asset('melody/js/avgrund.js') }}"></script> --}}
 	<script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
 	<script src="{{ asset('js/detalleVenta.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('select2-develop/dist/js/select2.min.js') }}"></script>
 @endsection

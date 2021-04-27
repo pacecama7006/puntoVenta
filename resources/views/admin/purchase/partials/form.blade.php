@@ -1,11 +1,11 @@
 <div class="col-md-3{{ $errors->has('num_compra') ? ' has-error' : '' }}">
     {!! Form::label('num_compra', 'Num. de Compra:', ['class' => 'form-label']) !!}
-    {!! Form::number('num_compra', null, ['class' => 'form-control', 'placeholder' =>'Indique el número de compra']) !!}
+    {!! Form::number('num_compra', $num_compra, ['class' => 'form-control', 'disabled' => 'disabled', 'value' => '$num_compra']) !!}
     <small class="text-danger">{{ $errors->first('num_compra') }}</small>
 </div>
 <div class="col-md-3{{ $errors->has('purchase_date') ? ' has-error' : '' }}">
     {!! Form::label('purchase_date', 'Fecha de la compra:', ['class' => 'form-label']) !!}
-    {!! Form::date('purchase_date', null, ['class' => 'form-control']) !!}
+    {!! Form::date('purchase_date', $fecha_compra, ['class' => 'form-control', 'disabled' => 'disabled']) !!}
     <small class="text-danger">{{ $errors->first('purchase_date') }}</small>
 </div>
 <div class="col-md-3{{ $errors->has('provider_id') ? ' has-error' : '' }}">
@@ -13,16 +13,27 @@
     {!! Form::select('provider_id', $providers, null, ['id' => 'provider_id','class' => 'form-select']) !!}
     <small class="text-danger">{{ $errors->first('provider_id') }}</small>
 </div>
-<div class="col-md-3{{ $errors->has('product_id') ? ' has-error' : '' }}">
-    {!! Form::label('product_id', 'Seleccione un Producto:', ['class' => 'form-label']) !!}
-    {!! Form::select('product_id', $products, null, ['placeholder'=> 'Seleccione un producto', 'id' => 'product_id','class' => 'form-select']) !!}
-    <small class="text-danger">{{ $errors->first('product_id') }}</small>
-</div>
 <div class="col-md-3{{ $errors->has('bar_code') ? ' has-error' : '' }}">
     {!! Form::label('bar_code', 'Código de barras:', ['class' => 'form-label']) !!}
     {!! Form::text('bar_code', null, ['id' =>'bar_code', 'class' => 'form-control', 'aria-describedby' => 'helpId']) !!}
     <small class="text-muted">Campo opcional</small>
     <small class="text-danger">{{ $errors->first('bar_code') }}</small>
+</div>
+{{-- <div class="col-md-3{{ $errors->has('product_id') ? ' has-error' : '' }}">
+    {!! Form::label('product_id', 'Seleccione un Producto:', ['class' => 'form-label']) !!}
+    {!! Form::select('product_id', $products, null, ['placeholder'=> 'Seleccione un producto', 'id' => 'product_id','class' => 'form-select']) !!}
+    <small class="text-danger">{{ $errors->first('product_id') }}</small>
+</div> --}}
+<div class="form-group col-md-3">
+    <div class="form-group">
+        <label for="product_id" class="form-label mb-3">Producto</label>
+            <select class="form-control" name="product_id" id="product_id">
+            <option value="" disabled selected></option>
+            @foreach ($products as $product)
+            <option value="{{$product->id}}">{{$product->name}}</option>
+            @endforeach
+        </select>
+    </div>
 </div>
 <div class="col-md-3{{ $errors->has('quantity') ? ' has-error' : '' }}">
     {!! Form::label('quantity', 'Cantidad:', ['class' => 'form-label']) !!}
