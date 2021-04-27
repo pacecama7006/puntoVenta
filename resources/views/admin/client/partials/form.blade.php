@@ -8,7 +8,8 @@
 <div class="row mb-3{{ $errors->has('rfc_number') ? ' has-error' : '' }}">
     {!! Form::label('rfc_number', 'R.F.C.:', ['class' => 'col-sm-2 col-form-label']) !!}
     <div class="col-sm-10">
-        {!! Form::text('rfc_number', null, ['class' => 'form-control', 'required' => 'required', 'placeholder' =>'Escriba el Registro Federal de Contribuyentes del cliente...']) !!}
+        {!! Form::text('rfc_number', null, ['class' => 'form-control', 'placeholder' =>'Escriba el Registro Federal de Contribuyentes del cliente...']) !!}
+        <small class="text-muted">Campo Opcional</small>
         <small class="text-danger">{{ $errors->first('rfc_number') }}</small>
     </div>
 </div>
