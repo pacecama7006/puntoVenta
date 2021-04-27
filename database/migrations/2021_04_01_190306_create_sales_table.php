@@ -15,7 +15,7 @@ class CreateSalesTable extends Migration
     {
         Schema::create('sales', function (Blueprint $table) {
             $table->id();
-            $table->date('sale_date');
+            $table->dateTime('sale_date');
             $table->integer('num_vta')->unique();
             $table->decimal('tax');
             $table->decimal('total');
