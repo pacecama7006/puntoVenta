@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Box;
 use App\Models\Purchase;
 use App\Models\Sale;
 use Carbon\Carbon;
@@ -62,7 +63,7 @@ class ReportController extends Controller
     //Función que permite las compras por fecha
     public function reports_purchases_date()
     {
-        # code...
+
         $purchases = Purchase::whereDate('purchase_date', Carbon::today('America/Mexico_City'))->get();
         $total     = $purchases->sum('total');
         return view('admin.report.reports_purchases_date', compact('purchases', 'total'));
@@ -77,6 +78,87 @@ class ReportController extends Controller
         $purchases = Purchase::whereBetween('purchase_date', [$f_inicio, $f_fin])->get();
         $total     = $purchases->sum('total');
         return view('admin.report.reports_purchases_date', compact('purchases', 'total'));
+    }
+
+    public function corte_caja_diario()
+    {
+
+        $moves_ingreso = Box::find(1)->moves()
+            ->whereDate('fecha_mov', Carbon::today('America/Mexico_City'))
+            ->where('tipo', 'Ingreso')
+            ->get();
+
+        $total_ingreso = Box::find(1)->moves()
+            ->whereDate('fecha_mov', Carbon::today('America/Mexico_City'))
+            ->where('tipo', 'Ingreso')
+            ->sum('importe');
+
+        $moves_egreso = Box::find(1)->moves()
+            ->whereDate('fecha_mov', Carbon::today('America/Mexico_City'))
+            ->where('tipo', 'Egreso')
+            ->get();
+
+        $total_egreso = Box::find(1)->moves()
+            ->whereDate('fecha_mov', Carbon::today('America/Mexico_City'))
+            ->where('tipo', 'Egreso')
+            ->sum('importe');
+
+        // dd($total_egreso);
+        return view('admin.report.reports_corte_diario', compact('moves_ingreso', 'total_ingreso', 'moves_egreso', 'total_egreso'));
+    }
+
+    public function corte_caja__por_fecha()
+    {
+        $moves_ingreso = Box::find(1)->moves()
+            ->whereDate('fecha_mov', Carbon::today('America/Mexico_City'))
+            ->where('tipo', 'Ingreso')
+            ->get();
+
+        $total_ingreso = Box::find(1)->moves()
+            ->whereDate('fecha_mov', Carbon::today('America/Mexico_City'))
+            ->where('tipo', 'Ingreso')
+            ->sum('importe');
+
+        $moves_egreso = Box::find(1)->moves()
+            ->whereDate('fecha_mov', Carbon::today('America/Mexico_City'))
+            ->where('tipo', 'Egreso')
+            ->get();
+
+        $total_egreso = Box::find(1)->moves()
+            ->whereDate('fecha_mov', Carbon::today('America/Mexico_City'))
+            ->where('tipo', 'Egreso')
+            ->sum('importe');
+
+        // dd($total_egreso);
+        return view('admin.report.reports_corte_por_fecha', compact('moves_ingreso', 'total_ingreso', 'moves_egreso', 'total_egreso'));
+    }
+
+    public function corte_caja__por_fecha_resultados(Request $request)
+    {
+        $f_inicio      = $request->fecha_ini . ' 00:00:00';
+        $f_fin         = $request->fecha_fin . ' 23:59:59';
+        $moves_ingreso = Box::find(1)->moves()
+            ->whereBetween('fecha_mov', [$f_inicio, $f_fin])
+            ->where('tipo', 'Ingreso')
+            ->get();
+
+        $total_ingreso = Box::find(1)->moves()
+            ->whereBetween('fecha_mov', [$f_inicio, $f_fin])
+            ->where('tipo', 'Ingreso')
+            ->sum('importe');
+
+        $moves_egreso = Box::find(1)->moves()
+            ->whereBetween('fecha_mov', [$f_inicio, $f_fin])
+            ->where('tipo', 'Egreso')
+            ->get();
+
+        $total_egreso = Box::find(1)->moves()
+            ->whereBetween('fecha_mov', [$f_inicio, $f_fin])
+            ->where('tipo', 'Egreso')
+            ->sum('importe');
+
+        // dd($total_egreso);
+        return view('admin.report.reports_corte_por_fecha', compact('moves_ingreso', 'total_ingreso', 'moves_egreso', 'total_egreso'));
     }
 
 }
