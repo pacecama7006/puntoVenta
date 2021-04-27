@@ -7,6 +7,7 @@ use App\Models\Box;
 use App\Models\Concept;
 use App\Models\Move;
 use Barryvdh\DomPDF\Facade as PDF;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
@@ -18,12 +19,12 @@ class MoveController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        /*$this->middleware('can:moves.index')->only('index');
-    $this->middleware('can:moves.edit')->only('edit');
-    $this->middleware('can:moves.update')->only('update');
-    $this->middleware('can:moves.create')->only('create');
-    $this->middleware('can:moves.destroy')->only('destroy');
-    $this->middleware('can:moves.show')->only('show');*/
+        $this->middleware('can:moves.index')->only('index');
+        $this->middleware('can:moves.edit')->only('edit');
+        $this->middleware('can:moves.update')->only('update');
+        $this->middleware('can:moves.create')->only('create');
+        $this->middleware('can:moves.destroy')->only('destroy');
+        $this->middleware('can:moves.show')->only('show');
     }
 
     /**
@@ -45,11 +46,11 @@ class MoveController extends Controller
      */
     public function create()
     {
+        $fecha_mov = Carbon::now('America/Mexico_City');
+        $boxes     = Box::pluck('name', 'id');
+        $concepts  = Concept::pluck('concepto', 'id');
 
-        $boxes    = Box::pluck('name', 'id');
-        $concepts = Concept::pluck('concepto', 'id');
-
-        return view('admin.move.create', compact('boxes', 'concepts'));
+        return view('admin.move.create', compact('boxes', 'concepts', 'fecha_mov'));
     }
 
     /**
@@ -70,9 +71,9 @@ class MoveController extends Controller
         ]);
 
         //Creo la fecha del movimiento
-        // $fecha_mov = Carbon::now('America/Mexico_City');
+        $fecha_mov = Carbon::now('America/Mexico_City');
         //Obtengo los datos del formulario
-        $fecha_mov  = $request->input('fecha_mov');
+        //$fecha_mov  = $request->input('fecha_mov');
         $detalle    = $request->input('detalle');
         $importe    = $request->input('importe');
         $tipo       = $request->input('tipo');

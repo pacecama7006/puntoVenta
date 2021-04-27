@@ -63,7 +63,6 @@
 				        <table id="order-listing" class="table">
 				        	<thead>
 				        		<tr>
-				        			<th>Id</th>
 				        			<th>Fecha de movimiento</th>
 				        			<th>Tipo de movimiento</th>
 				        			<th>Concepto</th>
@@ -75,10 +74,7 @@
 				          	<tbody>
 								@foreach ($moves as $move)
 									<tr>
-										<th scope="row">{{ $move->id }}</th>
-										<td>
-											{{ date('d-m-Y', strtotime($move->fecha_mov)) }}
-										</td>
+										<th>{{ date('d-m-Y', strtotime($move->fecha_mov)) }}</th>
 										<td> {{ $move->tipo }} </td>
 										<td> {{ $move->concept->concepto }} </td>
 										<td> {{ number_format($move->importe,2,'.',',') }} </td>
