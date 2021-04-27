@@ -17,6 +17,7 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        // $this->middleware('can:ptoventa.index')->only('index');
     }
 
     /**
@@ -40,6 +41,11 @@ class HomeController extends Controller
 
         return view('ptoventa', compact('compras_mes', 'ventas_mes', 'productosvendidos'));
 
+    }
+
+    public function general()
+    {
+        return view('Bienvenido');
     }
 
 }

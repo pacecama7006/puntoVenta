@@ -11,6 +11,7 @@ use App\Http\Controllers\MoveController;
 use App\Http\Controllers\PrinterController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProviderController;
+use App\Http\Controllers\PruebaVentaController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\RoleController;
@@ -38,6 +39,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('ptoventa', [HomeController::class, 'index'])->name('ptoventa');
+Route::middleware(['auth:sanctum', 'verified'])->get('panel', [HomeController::class, 'general'])->name('panel');
+// Route::get('ptoventa', [HomeController::class, 'index'])->name('ptoventa');
 Route::get('graficas', function () {
     return view('ptoventa4');
 });
@@ -48,16 +51,22 @@ Route::middleware(['auth:sanctum', 'verified'])->get('graficas/grafica_compra_me
 
 //Rutas para la generación de reportes de ventas
 Route::prefix('sales')->group(function () {
-    Route::get('reports_day}', [ReportController::class, 'reports_day'])->name('sales.reports.day');
-    Route::get('reports_date}', [ReportController::class, 'reports_date'])->name('sales.reports.date');
-    Route::post('report_result}', [ReportController::class, 'report_result'])->name('sales.report.result');
+    Route::get('reports_day', [ReportController::class, 'reports_day'])->name('sales.reports.day');
+    Route::get('reports_date', [ReportController::class, 'reports_date'])->name('sales.reports.date');
+    Route::post('report_result', [ReportController::class, 'report_result'])->name('sales.report.result');
 });
 
 //Rutas para la generación de reportes de compras
 Route::prefix('purchases')->group(function () {
-    Route::get('reports_day}', [ReportController::class, 'reports_purchases_day'])->name('purchases.reports.purchases.day');
-    Route::get('reports_date}', [ReportController::class, 'reports_purchases_date'])->name('purchases.reports.purchases.date');
-    Route::post('report_result}', [ReportController::class, 'report_purchases_result'])->name('purchases.report.purchases.result');
+    Route::get('reports_day', [ReportController::class, 'reports_purchases_day'])->name('purchases.reports.purchases.day');
+    Route::get('reports_date', [ReportController::class, 'reports_purchases_date'])->name('purchases.reports.purchases.date');
+    Route::post('report_result', [ReportController::class, 'report_purchases_result'])->name('purchases.report.purchases.result');
+});
+
+Route::prefix('boxes')->group(function () {
+    Route::get('corte_diario', [ReportController::class, 'corte_caja_diario'])->name('boxes.reports.corte_diario');
+    Route::get('corte_por_fecha', [ReportController::class, 'corte_caja__por_fecha'])->name('boxes.reports.corte_por_fecha');
+    Route::post('corte_por_resultado', [ReportController::class, 'corte_caja__por_fecha_resultados'])->name('boxes.reports.corte_por_resultado');
 });
 
 Route::get('categories/pdfCategories', [CategoryController::class, 'pdfCategories'])->name('categories.pdfCategories');
@@ -103,13 +112,15 @@ Route::get('purchases/pdf/{purchase}', [PurchaseController::class, 'pdf_detalle'
 
 //Ruta que permite generar el excel del detalle de una compra
 Route::get('purchases/excel/{purchase}', [PurchaseController::class, 'excel_detalle'])->name('purchases.excel_detalle');
+//Ruta que permite imprimir un ticket en impresora térmica del detalle de una compra
+Route::get('purchases/print/{purchase}', [PurchaseController::class, 'print'])->name('purchases.print');
 
 Route::resource('sales', SaleController::class)->names('sales');
 //Ruta que permite generar el pdf del detalle de una compra
 Route::get('sales/pdf/{sale}', [SaleController::class, 'pdf_detalle'])->name('sales.pdf_detalle');
 //Ruta que permite generar el excel del detalle de una compra
 Route::get('sales/excel/{sale}', [SaleController::class, 'excel_detalle'])->name('sales.excel_detalle');
-//Ruta que permite imprimir un ticket en impresora térmica del detalle de una compra
+//Ruta que permite imprimir un ticket en impresora térmica del detalle de una venta
 Route::get('sales/print/{sale}', [SaleController::class, 'print'])->name('sales.print');
 
 Route::prefix('businesses')->group(function () {
@@ -135,3 +146,12 @@ Route::get('/get_products_by_barcode/{bar_code}', [ProductController::class, 'ge
 
 Route::get('/get_products_by_id/{product_id}', [ProductController::class, 'get_products_by_id'])->name('get_products_by_id');
 Route::get('print_barcode', [ProductController::class, 'print_barcode'])->name('print_barcode');
+Route::get('purchases/{user?}/Comprador', [PurchaseController::class, 'purchases_by_user_id'])->name('purchases.user_id');
+
+Route::get('pruebaCompra', [PruebaVentaController::class, 'index'])->name('pruebaCompra');
+/*Route::get('/get_products_by_barcode/{bar_code}', [PruebaVentaController::class, 'get_products_by_barcode'])->name('get_products_by_barcode');
+Route::get('/get_products_by_id/{product_id}', [PruebaVentaController::class, 'get_products_by_id'])->name('get_products_by_id');*/
+
+/*Route::get('/get_products_by_barcode', [PruebaVentaController::class, 'get_products_by_barcode'])->name('get_products_by_barcode');
+
+Route::get('/get_products_by_id', [PruebaVentaController::class, 'get_products_by_id'])->name('get_products_by_id');*/
