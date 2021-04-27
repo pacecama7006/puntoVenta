@@ -75,7 +75,6 @@
 				        <table id="order-listing" class="table">
 				        	<thead>
 				        		<tr>
-				        			<th>Id</th>
 				        			<th>Número de venta</th>
 				        			<th>Fecha de venta</th>
 				        			<th>Total</th>
@@ -87,9 +86,8 @@
 								@foreach ($sales as $sale)
 									<tr>
 										<th scope="row">
-											{{ $sale->id }}
+											{{ $sale->num_vta }}
 										</th>
-										<td> {{ $sale->num_vta }} </td>
 										<td>
 											{{ date('d-m-Y',strtotime($sale->sale_date)) }}
 										</td>

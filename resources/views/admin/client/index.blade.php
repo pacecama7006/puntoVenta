@@ -63,9 +63,7 @@
 				        <table id="order-listing" class="table">
 				        	<thead>
 				        		<tr>
-				        			<th>Id</th>
 				        			<th>Nombre</th>
-				        			<th>R.F.C.</th>
 				        			<th>Teléfono</th>
 				        			<th>Email</th>
 				        			<th>Acciones</th>
@@ -74,11 +72,7 @@
 				          	<tbody>
 								@foreach ($clients as $client)
 									<tr>
-										<th scope="row">{{ $client->id }}</th>
-										<td>
-											{{ $client->name }}
-										</td>
-										<td> {{ $client->rfc_number }} </td>
+										<th scope="row">{{ $client->name }}</th>
 										<td> {{ $client->phone }} </td>
 										<td> {{ $client->email }} </td>
 										<td style="width: 50px;">

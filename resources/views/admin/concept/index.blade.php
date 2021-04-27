@@ -63,7 +63,6 @@
 				        <table id="order-listing" class="table">
 				        	<thead>
 				        		<tr>
-				        			<th>Id</th>
 				        			<th>Concepto</th>
 				        			<th>Tipo</th>
 				        			<th>Acciones</th>
@@ -72,8 +71,7 @@
 				          	<tbody>
 								@foreach ($concepts as $concept)
 									<tr>
-										<th scope="row">{{ $concept->id }}</th>
-										<td> {{ $concept->concepto  }} </td>
+										<th scope="row">{{ $concept->concepto  }}</th>
 										<td> {{ $concept->tipo }} </td>
 										<td style="width: 50px;">
 											{!! Form::open(['route' => ['concepts.destroy', $concept], 'method'=> 'delete']) !!}

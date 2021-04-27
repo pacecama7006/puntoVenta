@@ -13,9 +13,7 @@
 	{{-- expr --}}
 @endsection
 @section('create')
-{{-- 	<li class="nav-item d-note d-lg-flex">
-		<a class="btn btn-primary" href="{{ route('sales.create') }}">+Crear nuevo.</a>
-	</li> --}}
+
 @endsection
 @section('content')
 <div class="content-wrapper">
@@ -142,16 +140,16 @@
 @section('js')
 	<script type="text/javascript" src="{{ asset('melody/js/data-table.js') }}"></script>
 	<script>
-    window.onload = function(){
-        var fecha = new Date(); //Fecha actual
-        var mes = fecha.getMonth()+1; //obteniendo mes
-        var dia = fecha.getDate(); //obteniendo dia
-        var ano = fecha.getFullYear(); //obteniendo año
-        if(dia<10)
-          dia='0'+dia; //agrega cero si el menor de 10
-        if(mes<10)
-          mes='0'+mes //agrega cero si el menor de 10
-        document.getElementById('fecha_fin').value=ano+"-"+mes+"-"+dia;
-      }
-</script>
+	    window.onload = function(){
+	        var fecha = new Date(); //Fecha actual
+	        var mes = fecha.getMonth()+1; //obteniendo mes
+	        var dia = fecha.getDate(); //obteniendo dia
+	        var ano = fecha.getFullYear(); //obteniendo año
+	        if(dia<10)
+	          dia='0'+dia; //agrega cero si el menor de 10
+	        if(mes<10)
+	          mes='0'+mes //agrega cero si el menor de 10
+	        document.getElementById('fecha_fin').value=ano+"-"+mes+"-"+dia;
+	      }
+	</script>
 @endsection

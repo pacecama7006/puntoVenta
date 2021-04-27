@@ -63,10 +63,9 @@
 				        <table id="order-listing" class="table">
 				        	<thead>
 				        		<tr>
-				        			<th>Id</th>
 				        			<th># de venta</th>
 				        			<th>Fecha de venta</th>
-				        			<th>Cliente</th>
+				        			<th>Vendedor</th>
 				        			<th>Total</th>
 				        			<th>Estado</th>
 				        			<th style="width: 110px;">Acciones</th>
@@ -76,15 +75,12 @@
 								@foreach ($sales as $sale)
 									<tr>
 										<th scope="row">
-											{{ $sale->id }}
-										</th>
-										<td>
 											{{$sale->num_vta }}
-										</td>
+										</th>
 										<td>
 											{{ date('d-m-Y', strtotime($sale->sale_date)) }}
 										</td>
-										<td> {{$sale->client->name }} </td>
+										<td> {{$sale->user->name }} </td>
 										<td>$ {{ number_format($sale->total,2,'.',',') }} </td>
 										@if ($sale->status == 'VALID')
 											<td>

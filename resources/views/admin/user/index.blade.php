@@ -63,7 +63,6 @@
 				        <table id="order-listing" class="table">
 				        	<thead>
 				        		<tr>
-				        			<th>Id</th>
 				        			<th>Nombre</th>
 				        			<th>Correo </th>
 				        			<th>Acciones</th>
@@ -72,10 +71,7 @@
 				          	<tbody>
 								@foreach ($users as $user)
 									<tr>
-										<th scope="row">{{ $user->id }}</th>
-										<td>
-											{{ $user->name }}
-										</td>
+										<th scope="row">{{ $user->name }}</th>
 										<td> {{ $user->email }} </td>
 										<td style="width: 50px;">
 											{!! Form::open(['route' => ['users.destroy', $user], 'method'=> 'delete']) !!}

@@ -63,7 +63,6 @@
 				        <table id="order-listing" class="table">
 				        	<thead>
 				        		<tr>
-				        			<th>Id</th>
 				        			<th>Nombre</th>
 				        			<th>Acciones</th>
 				        		</tr>
@@ -71,10 +70,7 @@
 				          	<tbody>
 								@foreach ($roles as $role)
 									<tr>
-										<th scope="row">{{ $role->id }}</th>
-										<td>
-											{{ $role->name }}
-										</td>
+										<th scope="row">{{ $role->name }}</th>
 										<td style="width: 50px;">
 											{!! Form::open(['route' => ['roles.destroy', $role], 'method'=> 'delete']) !!}
 

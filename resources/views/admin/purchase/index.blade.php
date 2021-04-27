@@ -30,7 +30,11 @@
 		<h3 class="page-title">Gestión de Compras.</h3>
 		<nav aria-label="breadcrumb">
 			<ol class="breadcrumb">
-				<li class="breadcrumb-item"><a href="{{ route('ptoventa') }}">Panel administrador</a></li>
+				@if (Auth::user()->hasAnyRole('SuperAdmin','Administrador'))
+					<li class="breadcrumb-item"><a href="{{ route('ptoventa') }}">Panel administrador</a></li>
+				@else
+					<li class="breadcrumb-item"><a href="#">Panel administrador</a></li>
+				@endif
 				<li class="breadcrumb-item active" aria-current="page">Compras</li>
 			</ol>
 		</nav>
@@ -63,57 +67,104 @@
 				        <table id="order-listing" class="table">
 				        	<thead>
 				        		<tr>
-				        			<th>Id</th>
 				        			<th># de compra</th>
 				        			<th>Fecha de compra</th>
-				        			<th>Proveedor</th>
+				        			<th>Comprador</th>
 				        			<th>Total</th>
 				        			<th>Estado</th>
 				        			<th style="width: 110px;">Acciones</th>
 				        		</tr>
 				        	</thead>
 				          	<tbody>
-								@foreach ($purchases as $purchase)
-									<tr>
-										<th scope="row">
-											{{ $purchase->id }}
-										</th>
-										<td> {{ $purchase->num_compra }} </td>
-										<td>
-											{{ date('d-m-Y',strtotime($purchase->purchase_date)) }}
-										</td>
-										<td> {{ $purchase->provider->name }} </td>
-										<td> $ {{ number_format($purchase->total,2,'.',',') }} </td>
-										@if ($purchase->status == 'VALID')
+								@if (Auth::user()->hasAnyRole('SuperAdmin', 'Administrador'))
+									@foreach ($purchases as $purchase)
+										<tr>
+											<th scope="row">
+												{{ $purchase->num_compra }}
+											</th>
 											<td>
-		                                        @can('purchases.status')
-		                                        	<a class="jsgrid-button btn btn-success" href="{{route('purchases.status', $purchase)}}" title="Editar">
-		                                            Activo <i class="fas fa-check"></i>
-		                                        </a>
-		                                        @endcan
-		                                    </td>
-										@else
+												{{ date('d-m-Y',strtotime($purchase->purchase_date)) }}
+											</td>
+											<td> {{ $purchase->user->name }} </td>
+											<td> $ {{ number_format($purchase->total,2,'.',',') }} </td>
+											@if ($purchase->status == 'VALID')
+												<td>
+			                                        @can('purchases.status')
+			                                        	<a class="jsgrid-button btn btn-success" href="{{route('purchases.status', $purchase)}}" title="Editar">
+			                                            Activo <i class="fas fa-check"></i>
+			                                        </a>
+			                                        @endcan
+			                                    </td>
+											@else
+												<td>
+			                                        @can('purchases.status')
+			                                        	<a class="jsgrid-button btn btn-danger" href="{{route('purchases.status', $purchase)}}" title="Editar">
+			                                            Cancelado <i class="fas fa-times"></i>
+			                                        </a>
+			                                        @endcan
+			                                    </td>
+											@endif
+											<td style="width: 110px;">
+													@can('purchases.show')
+														<a class="jsgrid-button jsgrid-edit-button" href="{{ route('purchases.show', $purchase) }}" title="Detalles"><i class="far fa-eye"></i></a>
+													@endcan
+													@can('purchases.pdf_detalle')
+														<a class="jsgrid-button jsgrid-edit-button" href="{{ route('purchases.pdf_detalle', $purchase) }}" title="Exportar Pdf"><i class="far fa-file-pdf"></i></a>
+													@endcan
+													@can('purchases.excel_detalle')
+														<a class="jsgrid-button jsgrid-edit-button" href="{{ route('purchases.excel_detalle', $purchase) }}" title="Exportar Excel"><i class="fas fa-file-excel"></i></a>
+													@endcan
+													{{-- @can('purchases.print') --}}
+														<a class="jsgrid-button jsgrid-edit-button" href="{{ route('purchases.print', $purchase) }}" title="Imprimir"><i class="fas fa-print"></i></a>
+													{{-- @endcan --}}
+											</td>
+										</tr>
+									@endforeach
+								@else
+									@foreach ($purchases_com as $purchase)
+										<tr>
+											<th scope="row">
+												{{ $purchase->num_compra }}
+											</th>
 											<td>
-		                                        @can('purchases.status')
-		                                        	<a class="jsgrid-button btn btn-danger" href="{{route('purchases.status', $purchase)}}" title="Editar">
-		                                            Cancelado <i class="fas fa-times"></i>
-		                                        </a>
-		                                        @endcan
-		                                    </td>
-										@endif
-										<td style="width: 110px;">
-												@can('purchases.show')
-													<a class="jsgrid-button jsgrid-edit-button" href="{{ route('purchases.show', $purchase) }}" title="Detalles"><i class="far fa-eye"></i></a>
-												@endcan
-												@can('purchases.pdf_detalle')
-													<a class="jsgrid-button jsgrid-edit-button" href="{{ route('purchases.pdf_detalle', $purchase) }}" title="Exportar Pdf"><i class="far fa-file-pdf"></i></a>
-												@endcan
-												@can('purchases.excel_detalle')
-													<a class="jsgrid-button jsgrid-edit-button" href="{{ route('purchases.excel_detalle', $purchase) }}" title="Exportar Excel"><i class="fas fa-file-excel"></i></a>
-												@endcan
-										</td>
-									</tr>
-								@endforeach
+												{{ date('d-m-Y',strtotime($purchase->purchase_date)) }}
+											</td>
+											<td> {{ $purchase->user->name }} </td>
+											<td> $ {{ number_format($purchase->total,2,'.',',') }} </td>
+											@if ($purchase->status == 'VALID')
+												<td>
+			                                        @can('purchases.status')
+			                                        	<a class="jsgrid-button btn btn-success" href="{{route('purchases.status', $purchase)}}" title="Editar">
+			                                            Activo <i class="fas fa-check"></i>
+			                                        </a>
+			                                        @endcan
+			                                    </td>
+											@else
+												<td>
+			                                        @can('purchases.status')
+			                                        	<a class="jsgrid-button btn btn-danger" href="{{route('purchases.status', $purchase)}}" title="Editar">
+			                                            Cancelado <i class="fas fa-times"></i>
+			                                        </a>
+			                                        @endcan
+			                                    </td>
+											@endif
+											<td style="width: 110px;">
+													@can('purchases.show')
+														<a class="jsgrid-button jsgrid-edit-button" href="{{ route('purchases.show', $purchase) }}" title="Detalles"><i class="far fa-eye"></i></a>
+													@endcan
+													@can('purchases.pdf_detalle')
+														<a class="jsgrid-button jsgrid-edit-button" href="{{ route('purchases.pdf_detalle', $purchase) }}" title="Exportar Pdf"><i class="far fa-file-pdf"></i></a>
+													@endcan
+													@can('purchases.excel_detalle')
+														<a class="jsgrid-button jsgrid-edit-button" href="{{ route('purchases.excel_detalle', $purchase) }}" title="Exportar Excel"><i class="fas fa-file-excel"></i></a>
+													@endcan
+													{{-- @can('purchases.print') --}}
+														<a class="jsgrid-button jsgrid-edit-button" href="{{ route('purchases.print', $purchase) }}" title="Imprimir"><i class="fas fa-print"></i></a>
+													{{-- @endcan --}}
+											</td>
+										</tr>
+									@endforeach
+								@endif
 			          		</tbody>
 			        	</table>
 			      	{{-- Fin de tabla responsive --}}

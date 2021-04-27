@@ -63,7 +63,6 @@
 				        <table id="order-listing" class="table">
 				        	<thead>
 				        		<tr>
-				        			<th>Id</th>
 				        			<th>Nombre</th>
 				        			<th>Usuario</th>
 				        			<th>Saldo</th>
@@ -73,8 +72,7 @@
 				          	<tbody>
 								@foreach ($boxes as $box)
 									<tr>
-										<th scope="row">{{ $box->id }}</th>
-										<td> {{ $box->name  }} </td>
+										<th scope="row">{{ $box->name  }}</th>
 										<td> {{ $box->user->name }} </td>
 										<td>$ {{ number_format($box->saldo,2,'.',',') }} </td>
 										<td style="width: 50px;">

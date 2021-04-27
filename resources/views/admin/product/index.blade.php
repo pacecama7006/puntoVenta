@@ -68,7 +68,6 @@
 				        <table id="order-listing" class="table">
 				        	<thead>
 				        		<tr>
-				        			<th>Id</th>
 				        			<th>Código del producto</th>
 				        			<th>Nombre</th>
 				        			<th>Stock</th>
@@ -80,8 +79,7 @@
 				          	<tbody>
 								@foreach ($products as $product)
 									<tr>
-										<th scope="row">{{ $product->id }}</th>
-										<td> {{ $product->code }} </td>
+										<th scope="row">{{ $product->code }}</th>
 										<td>
 											{{ $product->name }}
 										</td>

@@ -63,7 +63,6 @@
 				        <table id="order-listing" class="table">
 				        	<thead>
 				        		<tr>
-				        			<th>Id</th>
 				        			<th>Nombre</th>
 				        			<th>Descripción</th>
 				        			<th>Acciones</th>
@@ -72,10 +71,7 @@
 				          	<tbody>
 								@foreach ($categories as $category)
 									<tr>
-										<th scope="row">{{ $category->id }}</th>
-										<td>
-											{{ $category->name }}
-										</td>
+										<th scope="row">{{ $category->name }}</th>
 										<td> {{ $category->description }} </td>
 										<td style="width: 50px;">
 											{!! Form::open(['route' => ['categories.destroy', $category], 'method'=> 'delete']) !!}
