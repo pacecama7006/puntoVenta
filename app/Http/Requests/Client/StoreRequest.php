@@ -25,11 +25,11 @@ class StoreRequest extends FormRequest
     {
         return [
             //
-            'name'       => 'required|string|max:50',
-            'rfc_number' => 'string|max:15|min:12|unique:clients',
-            'address'    => 'required|string|max:255|min:10',
-            'phone'      => 'required|string|max:15|unique:clients',
-            'email'      => 'required|string|email|max:100|unique:clients',
+            'name'    => 'required|string|max:50',
+            // 'rfc_number' => 'string|max:15|min:12|unique:clients',
+            'address' => 'required|string|max:255|min:10',
+            'phone'   => 'required|string|max:15|unique:clients',
+            'email'   => 'required|string|email|max:100|unique:clients',
         ];
     }
 }
