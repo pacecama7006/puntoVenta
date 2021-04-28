@@ -53,7 +53,11 @@
 					        {!! Form::submit("Agregar", ['class' => 'btn btn-primary', 'id' => 'guardar']) !!}
 					    </div>
 					@endcan
-				    <a class="btn btn-light" href="{{ route('purchases.index') }}">Cancelar</a>
+				    @if (Auth::user()->hasAnyRole('SuperAdmin', 'Administrador'))
+				    	<a class="btn btn-light" href="{{ route('purchases.index') }}">Cancelar</a>
+				    @else
+				    	<a class="btn btn-light" href="{{ route('purchases.user_id', Auth::id() ) }}">Cancelar</a>
+				    @endif
 				</div>
 				{!! Form::close() !!}
 			{{-- fin card --}}
