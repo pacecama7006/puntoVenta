@@ -25,7 +25,7 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'users.edit', 'description' => 'Editar un usuario'])->syncRoles([$role1]);
         Permission::create(['name' => 'users.update', 'description' => 'Actualizar un usuario'])->syncRoles([$role1]);
         Permission::create(['name' => 'users.create', 'description' => 'Crear un usuario'])->syncRoles([$role1]);
-        Permission::create(['name' => 'users.destroy', 'description' => 'Eliminar un usuario'])->syncRoles([$$role1, $role2]);
+        Permission::create(['name' => 'users.destroy', 'description' => 'Eliminar un usuario'])->syncRoles([$role1, $role2]);
         Permission::create(['name' => 'users.show', 'description' => 'Ver detalles de un usuario'])->syncRoles([$role1]);
         Permission::create(['name' => 'users.pdfUsers', 'description' => 'Generar PDF de usuarios'])->syncRoles([$role1]);
         Permission::create(['name' => 'users.export', 'description' => 'Exportar Excel de usuarios'])->syncRoles([$role1]);
@@ -39,58 +39,58 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'roles.pdfRoles', 'description' => 'Generar PDF de roles'])->syncRoles([$role1]);
         Permission::create(['name' => 'roles.export', 'description' => 'Exportar Excel de roles'])->syncRoles([$role1]);
 
-        Permission::create(['name' => 'categories.index', 'description' => 'Ver listado de categorías'])->syncRoles([$$role1, $role2]);
-        Permission::create(['name' => 'categories.edit', 'description' => 'Editar una categoría'])->syncRoles([$$role1, $role2]);
-        Permission::create(['name' => 'categories.update', 'description' => 'Actualizar una categoría'])->syncRoles([$$role1, $role2]);
-        Permission::create(['name' => 'categories.create', 'description' => 'Crear una categoría'])->syncRoles([$$role1, $role2]);
-        Permission::create(['name' => 'categories.destroy', 'description' => 'Eliminar una categoría'])->syncRoles([$$role1, $role2]);
-        Permission::create(['name' => 'categories.show', 'description' => 'Ver detalles de una categoría'])->syncRoles([$$role1, $role2]);
+        Permission::create(['name' => 'categories.index', 'description' => 'Ver listado de categorías'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'categories.edit', 'description' => 'Editar una categoría'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'categories.update', 'description' => 'Actualizar una categoría'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'categories.create', 'description' => 'Crear una categoría'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'categories.destroy', 'description' => 'Eliminar una categoría'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'categories.show', 'description' => 'Ver detalles de una categoría'])->syncRoles([$role1, $role2]);
 
-        Permission::create(['name' => 'categories.pdfCategories', 'description' => 'Generar PDF de categorías'])->syncRoles([$$role1, $role2]);
-        Permission::create(['name' => 'categories.export', 'description' => 'Exportar Excel de categorías'])->syncRoles([$$role1, $role2]);
+        Permission::create(['name' => 'categories.pdfCategories', 'description' => 'Generar PDF de categorías'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'categories.export', 'description' => 'Exportar Excel de categorías'])->syncRoles([$role1, $role2]);
 
-        Permission::create(['name' => 'clients.index', 'description' => 'Ver listado de clientes'])->syncRoles([$$role1, $role2]);
-        Permission::create(['name' => 'clients.edit', 'description' => 'Editar un cliente'])->syncRoles([$$role1, $role2]);
-        Permission::create(['name' => 'clients.update', 'description' => 'Actualizar un cliente'])->syncRoles([$$role1, $role2]);
-        Permission::create(['name' => 'clients.create', 'description' => 'Crear un cliente'])->syncRoles([$$role1, $role2]);
-        Permission::create(['name' => 'clients.destroy', 'description' => 'Eliminar un cliente'])->syncRoles([$$role1, $role2]);
-        Permission::create(['name' => 'clients.show', 'description' => 'Mostrar detalles de un cliente'])->syncRoles([$$role1, $role2]);
+        Permission::create(['name' => 'clients.index', 'description' => 'Ver listado de clientes'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'clients.edit', 'description' => 'Editar un cliente'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'clients.update', 'description' => 'Actualizar un cliente'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'clients.create', 'description' => 'Crear un cliente'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'clients.destroy', 'description' => 'Eliminar un cliente'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'clients.show', 'description' => 'Mostrar detalles de un cliente'])->syncRoles([$role1, $role2]);
 
-        Permission::create(['name' => 'clients.pdfClients', 'description' => 'Generar PDF de clientes'])->syncRoles([$$role1, $role2]);
-        Permission::create(['name' => 'clients.export', 'description' => 'Exportar Excel de clientes'])->syncRoles([$$role1, $role2]);
+        Permission::create(['name' => 'clients.pdfClients', 'description' => 'Generar PDF de clientes'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'clients.export', 'description' => 'Exportar Excel de clientes'])->syncRoles([$role1, $role2]);
 
-        Permission::create(['name' => 'products.index', 'description' => 'Ver listado de productos'])->syncRoles([$$role1, $role2]);
-        Permission::create(['name' => 'products.edit', 'description' => 'Editar un producto'])->syncRoles([$$role1, $role2]);
-        Permission::create(['name' => 'products.update', 'description' => 'Actualizar un producto'])->syncRoles([$$role1, $role2]);
-        Permission::create(['name' => 'products.create', 'description' => 'Crear un producto'])->syncRoles([$$role1, $role2]);
-        Permission::create(['name' => 'products.destroy', 'description' => 'Eliminar un producto'])->syncRoles([$$role1, $role2]);
-        Permission::create(['name' => 'products.show', 'description' => 'Mostrar detalles de un producto'])->syncRoles([$$role1, $role2]);
+        Permission::create(['name' => 'products.index', 'description' => 'Ver listado de productos'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'products.edit', 'description' => 'Editar un producto'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'products.update', 'description' => 'Actualizar un producto'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'products.create', 'description' => 'Crear un producto'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'products.destroy', 'description' => 'Eliminar un producto'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'products.show', 'description' => 'Mostrar detalles de un producto'])->syncRoles([$role1, $role2]);
 
-        Permission::create(['name' => 'product.file', 'description' => 'Obtener imagen de un producto'])->syncRoles([$$role1, $role2]);
+        Permission::create(['name' => 'product.file', 'description' => 'Obtener imagen de un producto'])->syncRoles([$role1, $role2]);
 
-        Permission::create(['name' => 'products.pdfProducts', 'description' => 'Generar PDF de productos'])->syncRoles([$$role1, $role2]);
-        Permission::create(['name' => 'products.export', 'description' => 'Exportar Excel de productos'])->syncRoles([$$role1, $role2]);
+        Permission::create(['name' => 'products.pdfProducts', 'description' => 'Generar PDF de productos'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'products.export', 'description' => 'Exportar Excel de productos'])->syncRoles([$role1, $role2]);
 
-        Permission::create(['name' => 'providers.index', 'description' => 'Ver listado de proveedors'])->syncRoles([$$role1, $role2]);
-        Permission::create(['name' => 'providers.edit', 'description' => 'Editar un proveedor'])->syncRoles([$$role1, $role2]);
-        Permission::create(['name' => 'providers.update', 'description' => 'Actualizar un proveedor'])->syncRoles([$$role1, $role2]);
-        Permission::create(['name' => 'providers.create', 'description' => 'Crear un proveedor'])->syncRoles([$$role1, $role2]);
-        Permission::create(['name' => 'providers.destroy', 'description' => 'Eliminar un proveedor'])->syncRoles([$$role1, $role2]);
-        Permission::create(['name' => 'providers.show', 'description' => 'Mostrar detalle de un proveedor'])->syncRoles([$$role1, $role2]);
+        Permission::create(['name' => 'providers.index', 'description' => 'Ver listado de proveedors'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'providers.edit', 'description' => 'Editar un proveedor'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'providers.update', 'description' => 'Actualizar un proveedor'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'providers.create', 'description' => 'Crear un proveedor'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'providers.destroy', 'description' => 'Eliminar un proveedor'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'providers.show', 'description' => 'Mostrar detalle de un proveedor'])->syncRoles([$role1, $role2]);
 
-        Permission::create(['name' => 'providers.pdfProviders', 'description' => 'Generar PDF de proveedores'])->syncRoles([$$role1, $role2]);
-        Permission::create(['name' => 'providers.export', 'description' => 'Exportar Excel de proveedores'])->syncRoles([$$role1, $role2]);
+        Permission::create(['name' => 'providers.pdfProviders', 'description' => 'Generar PDF de proveedores'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'providers.export', 'description' => 'Exportar Excel de proveedores'])->syncRoles([$role1, $role2]);
 
-        Permission::create(['name' => 'purchases.index', 'description' => 'Ver listado de compras'])->syncRoles([$$role1, $role2, $role3]);
-        Permission::create(['name' => 'purchases.edit', 'description' => 'Editar una compra'])->syncRoles([$$role1, $role2]);
-        Permission::create(['name' => 'purchases.update', 'description' => 'Actualizar una compra'])->syncRoles([$$role1, $role2]);
-        Permission::create(['name' => 'purchases.create', 'description' => 'Crear una compra'])->syncRoles([$$role1, $role2, $role3]);
-        Permission::create(['name' => 'purchases.destroy', 'description' => 'Eliminar una compra'])->syncRoles([$$role1, $role2]);
-        Permission::create(['name' => 'purchases.show', 'description' => 'Mostrar detalles de una compra'])->syncRoles([$$role1, $role2]);
-        Permission::create(['name' => 'purchases.pdf_detalle', 'description' => 'Generar el pdf de una compra'])->syncRoles([$$role1, $role2, $role3]);
-        Permission::create(['name' => 'purchases.excel_detalle', 'description' => 'Generar el detalle de una compra en excel'])->syncRoles([$$role1, $role2]);
-        Permission::create(['name' => 'purchases.pdfPurchases', 'description' => 'Generar PDF de compras'])->syncRoles([$$role1, $role2]);
-        Permission::create(['name' => 'purchases.export', 'description' => 'Exportar Excel de compras'])->syncRoles([$$role1, $role2]);
+        Permission::create(['name' => 'purchases.index', 'description' => 'Ver listado de compras'])->syncRoles([$role1, $role2, $role3]);
+        Permission::create(['name' => 'purchases.edit', 'description' => 'Editar una compra'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'purchases.update', 'description' => 'Actualizar una compra'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'purchases.create', 'description' => 'Crear una compra'])->syncRoles([$role1, $role2, $role3]);
+        Permission::create(['name' => 'purchases.destroy', 'description' => 'Eliminar una compra'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'purchases.show', 'description' => 'Mostrar detalles de una compra'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'purchases.pdf_detalle', 'description' => 'Generar el pdf de una compra'])->syncRoles([$role1, $role2, $role3]);
+        Permission::create(['name' => 'purchases.excel_detalle', 'description' => 'Generar el detalle de una compra en excel'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'purchases.pdfPurchases', 'description' => 'Generar PDF de compras'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'purchases.export', 'description' => 'Exportar Excel de compras'])->syncRoles([$role1, $role2]);
 
         Permission::create(['name' => 'sales.pdfSales', 'description' => 'Generar PDF de ventas'])->syncRoles([$role1, $role2]);
         Permission::create(['name' => 'sales.export', 'description' => 'Exportar Excel de ventas'])->syncRoles([$role1, $role2]);
