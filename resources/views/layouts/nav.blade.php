@@ -36,7 +36,8 @@
         <div class="collapse" id="caja">
           <ul class="nav flex-column sub-menu">
             @can('boxes.index')
-                <li class="nav-item d-none d-lg-block"> <a class="nav-link" href="{{ route('boxes.index') }}">Listado</a></li>
+                {{-- <li class="nav-item d-none d-lg-block"> <a class="nav-link" href="{{ route('boxes.index') }}">Listado</a></li> --}}
+                <li class="nav-item d-lg-block"> <a class="nav-link" href="{{ route('boxes.index') }}">Listado</a></li>
             @endcan
             @can('boxes.create')
                 <li class="nav-item"> <a class="nav-link" href="{{ route('boxes.create') }}">Crear</a></li>
@@ -55,7 +56,8 @@
         <div class="collapse" id="conceptos">
           <ul class="nav flex-column sub-menu">
             @can('concepts.index')
-                <li class="nav-item d-none d-lg-block"> <a class="nav-link" href="{{ route('concepts.index') }}">Listado</a></li>
+                {{-- <li class="nav-item d-none d-lg-block"> <a class="nav-link" href="{{ route('concepts.index') }}">Listado</a></li> --}}
+                <li class="nav-item d-lg-block"> <a class="nav-link" href="{{ route('concepts.index') }}">Listado</a></li>
             @endcan
             @can('concepts.create')
                 <li class="nav-item"> <a class="nav-link" href="{{ route('concepts.create') }}">Crear</a></li>
@@ -74,7 +76,8 @@
         <div class="collapse" id="movimientos">
           <ul class="nav flex-column sub-menu">
             @can('moves.index')
-                <li class="nav-item d-none d-lg-block"> <a class="nav-link" href="{{ route('moves.index') }}">Listado</a></li>
+                {{-- <li class="nav-item d-none d-lg-block"> <a class="nav-link" href="{{ route('moves.index') }}">Listado</a></li> --}}
+                <li class="nav-item d-lg-block"> <a class="nav-link" href="{{ route('moves.index') }}">Listado</a></li>
             @endcan
             @can('moves.create')
                 <li class="nav-item"> <a class="nav-link" href="{{ route('moves.create') }}">Crear</a></li>
@@ -93,7 +96,8 @@
         <div class="collapse" id="page-layouts">
           <ul class="nav flex-column sub-menu">
             @can('categories.index')
-                <li class="nav-item d-none d-lg-block"> <a class="nav-link" href="{{ route('categories.index') }}">Listado</a></li>
+                {{-- <li class="nav-item d-none d-lg-block"> <a class="nav-link" href="{{ route('categories.index') }}">Listado</a></li> --}}
+                <li class="nav-item d-lg-block"> <a class="nav-link" href="{{ route('categories.index') }}">Listado</a></li>
             @endcan
             @can('categories.create')
                 <li class="nav-item"> <a class="nav-link" href="{{ route('categories.create') }}">Crear</a></li>
@@ -114,7 +118,12 @@
           <div class="collapse" id="clientes">
             <ul class="nav flex-column sub-menu">
               @can('clients.index')
-                  <li class="nav-item d-none d-lg-block">
+                  {{-- <li class="nav-item d-none d-lg-block">
+                    <a class="nav-link" href="{{ route('clients.index') }}">
+                      Listado
+                    </a>
+                  </li> --}}
+                  <li class="nav-item d-lg-block">
                     <a class="nav-link" href="{{ route('clients.index') }}">
                       Listado
                     </a>
@@ -137,7 +146,8 @@
         <div class="collapse" id="proveedores">
           <ul class="nav flex-column sub-menu">
             @can('providers.index')
-              <li class="nav-item d-none d-lg-block"> <a class="nav-link" href="{{ route('providers.index') }}">Listado</a></li>
+              {{-- <li class="nav-item d-none d-lg-block"> <a class="nav-link" href="{{ route('providers.index') }}">Listado</a></li> --}}
+              <li class="nav-item d-lg-block"> <a class="nav-link" href="{{ route('providers.index') }}">Listado</a></li>
             @endcan
             @can('products.create')
                 <li class="nav-item"> <a class="nav-link" href="{{ route('providers.create') }}">Crear</a></li>
@@ -156,7 +166,8 @@
         <div class="collapse" id="productos">
           <ul class="nav flex-column sub-menu">
             @can('products.index')
-              <li class="nav-item d-none d-lg-block"> <a class="nav-link" href="{{ route('products.index') }}">Listado</a></li>
+              {{-- <li class="nav-item d-none d-lg-block"> <a class="nav-link" href="{{ route('products.index') }}">Listado</a></li> --}}
+              <li class="nav-item d-lg-block"> <a class="nav-link" href="{{ route('products.index') }}">Listado</a></li>
             @endcan
             @can('products.create')
                 <li class="nav-item"> <a class="nav-link" href="{{ route('products.create') }}">Crear</a></li>
@@ -176,12 +187,14 @@
           <ul class="nav flex-column sub-menu">
             @if (Auth::user()->hasAnyRole('SuperAdmin', 'Administrador'))
               @can('purchases.index')
-                <li class="nav-item d-none d-lg-block"> <a class="nav-link" href="{{ route('purchases.index') }}">Listado</a></li>
+                {{-- <li class="nav-item d-none d-lg-block"> <a class="nav-link" href="{{ route('purchases.index') }}">Listado</a></li> --}}
+                <li class="nav-item d-lg-block"> <a class="nav-link" href="{{ route('purchases.index') }}">Listado</a></li>
               @endcan
             @endif
             @if (Auth::user()->hasRole('Comprador'))
               @can('purchases.index')
-                <li class="nav-item d-none d-lg-block"> <a class="nav-link" href="{{ route('purchases.user_id', Auth::id() ) }}">Listado</a></li>
+                {{-- <li class="nav-item d-none d-lg-block"> <a class="nav-link" href="{{ route('purchases.user_id', Auth::id() ) }}">Listado</a></li> --}}
+                <li class="nav-item d-lg-block"> <a class="nav-link" href="{{ route('purchases.user_id', Auth::id() ) }}">Listado</a></li>
               @endcan
             @endif
             @can('purchases.create')
@@ -200,7 +213,8 @@
         <div class="collapse" id="ventas">
           <ul class="nav flex-column sub-menu">
             @can('sales.index')
-              <li class="nav-item d-none d-lg-block"> <a class="nav-link" href="{{ route('sales.index') }}">Listado</a></li>
+              {{-- <li class="nav-item d-none d-lg-block"> <a class="nav-link" href="{{ route('sales.index') }}">Listado</a></li> --}}
+              <li class="nav-item d-lg-block"> <a class="nav-link" href="{{ route('sales.index') }}">Listado</a></li>
             @endcan
             @can('sales.create')
               <li class="nav-item"> <a class="nav-link" href="{{ route('sales.create') }}">Crear</a></li>
@@ -218,7 +232,8 @@
       </a>
       <div class="collapse" id="configuracion">
         <ul class="nav flex-column sub-menu">
-          <li class="nav-item d-none d-lg-block"> <a class="nav-link" href="{{ route('business.index') }}">Empresa</a></li>
+          {{-- <li class="nav-item d-none d-lg-block"> <a class="nav-link" href="{{ route('business.index') }}">Empresa</a></li> --}}
+          <li class="nav-item d-lg-block"> <a class="nav-link" href="{{ route('business.index') }}">Empresa</a></li>
           <li class="nav-item"> <a class="nav-link" href="{{ route('printer.index') }}">Impresora</a>
           </li>
         </ul>
@@ -235,7 +250,8 @@
         <div class="collapse" id="usuarios">
           <ul class="nav flex-column sub-menu">
             @can('users.index')
-              <li class="nav-item d-none d-lg-block"> <a class="nav-link" href="{{ route('users.index') }}">Listado</a></li>
+              {{-- <li class="nav-item d-none d-lg-block"> <a class="nav-link" href="{{ route('users.index') }}">Listado</a></li> --}}
+              <li class="nav-item d-lg-block"> <a class="nav-link" href="{{ route('users.index') }}">Listado</a></li>
             @endcan
             @can('users.create')
               <li class="nav-item"> <a class="nav-link" href="{{ route('users.create') }}">Crear</a></li>
@@ -254,7 +270,8 @@
         <div class="collapse" id="roles">
           <ul class="nav flex-column sub-menu">
             @can('roles.index')
-              <li class="nav-item d-none d-lg-block"> <a class="nav-link" href="{{ route('roles.index') }}">Listado</a></li>
+              {{-- <li class="nav-item d-none d-lg-block"> <a class="nav-link" href="{{ route('roles.index') }}">Listado</a></li> --}}
+              <li class="nav-item d-lg-block"> <a class="nav-link" href="{{ route('roles.index') }}">Listado</a></li>
             @endcan
             @can('users.create')
               <li class="nav-item"> <a class="nav-link" href="{{ route('roles.create') }}">Crear</a></li>
@@ -272,13 +289,16 @@
       </a>
       <div class="collapse" id="reportes">
         <ul class="nav flex-column sub-menu">
-          <li class="nav-item d-none d-lg-block"> <a class="nav-link" href="{{ route('sales.reports.day') }}">Ventas por día</a></li>
+          {{-- <li class="nav-item d-none d-lg-block"> <a class="nav-link" href="{{ route('sales.reports.day') }}">Ventas por día</a></li> --}}
+          <li class="nav-item d-lg-block"> <a class="nav-link" href="{{ route('sales.reports.day') }}">Ventas por día</a></li>
           <li class="nav-item"> <a class="nav-link" href="{{ route('sales.reports.date') }}">Ventas por fecha</a>
           </li>
-          <li class="nav-item d-none d-lg-block"> <a class="nav-link" href="{{ route('purchases.reports.purchases.day') }}">Compras por día</a></li>
+          {{-- <li class="nav-item d-none d-lg-block"> <a class="nav-link" href="{{ route('purchases.reports.purchases.day') }}">Compras por día</a></li> --}}
+          <li class="nav-item d-lg-block"> <a class="nav-link" href="{{ route('purchases.reports.purchases.day') }}">Compras por día</a></li>
           <li class="nav-item"> <a class="nav-link" href="{{ route('purchases.reports.purchases.date') }}">Compras por fecha</a>
           </li>
-          <li class="nav-item d-none d-lg-block"> <a class="nav-link" href="{{ route('boxes.reports.corte_diario') }}">Corte de caja por día</a></li>
+          {{-- <li class="nav-item d-none d-lg-block"> <a class="nav-link" href="{{ route('boxes.reports.corte_diario') }}">Corte de caja por día</a></li> --}}
+          <li class="nav-item d-lg-block"> <a class="nav-link" href="{{ route('boxes.reports.corte_diario') }}">Corte de caja por día</a></li>
           <li class="nav-item"> <a class="nav-link" href="{{ route('boxes.reports.corte_por_fecha') }}">Corte de caja por fecha</a>
           </li>
         </ul>
