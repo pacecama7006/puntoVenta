@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-04-2021 a las 08:16:38
+-- Tiempo de generación: 04-05-2021 a las 12:38:35
 -- Versión del servidor: 10.4.14-MariaDB
 -- Versión de PHP: 7.4.11
 
@@ -60,7 +60,7 @@ CREATE TABLE `businesses` (
 --
 
 INSERT INTO `businesses` (`id`, `name`, `description`, `rfc`, `adress`, `phone`, `email`, `logo`, `created_at`, `updated_at`) VALUES
-(1, 'Checos interprise', 'Reciclado de materiales', 'xxxx-010237-x12', 'Dirección conocida', '443-111-1111', 'correo@correo.com', 'logo.png', '2021-04-29 06:14:33', '2021-04-29 06:14:33');
+(1, 'Checos interprise', 'Reciclado de materiales', 'xxxx-010237-x12', 'Dirección conocida', '443-111-1111', 'correo@correo.com', 'logo.png', '2021-05-04 10:20:21', '2021-05-04 10:20:21');
 
 -- --------------------------------------------------------
 
@@ -87,9 +87,9 @@ CREATE TABLE `clients` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `rfc_number` varchar(15) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `phone` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone` varchar(15) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -128,6 +128,21 @@ CREATE TABLE `failed_jobs` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `measures`
+--
+
+CREATE TABLE `measures` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `medida` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `simbolo` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `migrations`
 --
 
@@ -142,27 +157,28 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(160, '2014_10_12_000000_create_users_table', 1),
-(161, '2014_10_12_100000_create_password_resets_table', 1),
-(162, '2014_10_12_200000_add_two_factor_columns_to_users_table', 1),
-(163, '2019_08_19_000000_create_failed_jobs_table', 1),
-(164, '2019_12_14_000001_create_personal_access_tokens_table', 1),
-(165, '2021_04_01_185056_create_categories_table', 1),
-(166, '2021_04_01_185455_create_providers_table', 1),
-(167, '2021_04_01_185611_create_products_table', 1),
-(168, '2021_04_01_185707_create_clients_table', 1),
-(169, '2021_04_01_185752_create_purchases_table', 1),
-(170, '2021_04_01_190201_create_purchase_details_table', 1),
-(171, '2021_04_01_190306_create_sales_table', 1),
-(172, '2021_04_01_190420_create_sale_details_table', 1),
-(173, '2021_04_01_194744_create_productgables_table', 1),
-(174, '2021_04_02_002911_create_sessions_table', 1),
-(175, '2021_04_04_212109_create_businesses_table', 1),
-(176, '2021_04_04_212317_create_printers_table', 1),
-(177, '2021_04_05_004830_create_permission_tables', 1),
-(178, '2021_04_10_050550_create_boxes_table', 1),
-(179, '2021_04_10_050824_create_concepts_table', 1),
-(180, '2021_04_10_050856_create_moves_table', 1);
+(1, '2014_10_12_000000_create_users_table', 1),
+(2, '2014_10_12_100000_create_password_resets_table', 1),
+(3, '2014_10_12_200000_add_two_factor_columns_to_users_table', 1),
+(4, '2019_08_19_000000_create_failed_jobs_table', 1),
+(5, '2019_12_14_000001_create_personal_access_tokens_table', 1),
+(6, '2021_04_01_185032_create_measures_table', 1),
+(7, '2021_04_01_185056_create_categories_table', 1),
+(8, '2021_04_01_185455_create_providers_table', 1),
+(9, '2021_04_01_185611_create_products_table', 1),
+(10, '2021_04_01_185707_create_clients_table', 1),
+(11, '2021_04_01_185752_create_purchases_table', 1),
+(12, '2021_04_01_190201_create_purchase_details_table', 1),
+(13, '2021_04_01_190306_create_sales_table', 1),
+(14, '2021_04_01_190420_create_sale_details_table', 1),
+(15, '2021_04_01_194744_create_productgables_table', 1),
+(16, '2021_04_02_002911_create_sessions_table', 1),
+(17, '2021_04_04_212109_create_businesses_table', 1),
+(18, '2021_04_04_212317_create_printers_table', 1),
+(19, '2021_04_05_004830_create_permission_tables', 1),
+(20, '2021_04_10_050550_create_boxes_table', 1),
+(21, '2021_04_10_050824_create_concepts_table', 1),
+(22, '2021_04_10_050856_create_moves_table', 1);
 
 -- --------------------------------------------------------
 
@@ -193,7 +209,8 @@ CREATE TABLE `model_has_roles` (
 --
 
 INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
-(1, 'App\\Models\\User', 1);
+(1, 'App\\Models\\User', 1),
+(2, 'App\\Models\\User', 2);
 
 -- --------------------------------------------------------
 
@@ -214,6 +231,87 @@ CREATE TABLE `moves` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Disparadores `moves`
+--
+DELIMITER $$
+CREATE TRIGGER `MOVES_AD` AFTER DELETE ON `moves` FOR EACH ROW BEGIN
+        IF OLD.tipo = 'INGRESO' THEN
+            UPDATE
+                boxes
+            SET
+                saldo = saldo -OLD.importe
+            WHERE
+                boxes.id = OLD.box_id;
+        ELSEIF OLD.tipo = 'EGRESO' THEN
+            UPDATE
+                boxes
+            SET
+                saldo = saldo + OLD.importe
+            WHERE
+                boxes.id = OLD.box_id;
+        END IF;
+
+    END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `MOVES_AI` AFTER INSERT ON `moves` FOR EACH ROW BEGIN
+        IF NEW.tipo = 'INGRESO' THEN
+            UPDATE
+                boxes
+            SET
+                saldo = saldo + NEW.importe
+            WHERE
+                boxes.id = NEW.box_id;
+        ELSEIF NEW.tipo = 'EGRESO' THEN
+            UPDATE
+                boxes
+            SET
+                saldo = saldo - NEW.importe
+            WHERE
+                boxes.id = NEW.box_id;
+        END IF;
+
+    END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `MOVES_AU` AFTER UPDATE ON `moves` FOR EACH ROW BEGIN
+        IF OLD.tipo = 'INGRESO' AND NEW.tipo = 'INGRESO' THEN
+            UPDATE
+                boxes
+            SET
+                saldo = saldo -OLD.importe + NEW.importe
+            WHERE
+                boxes.id = NEW.box_id;
+        ELSEIF OLD.tipo = 'INGRESO' AND NEW.tipo = 'EGRESO' THEN
+            UPDATE
+                boxes
+            SET
+                saldo = saldo -OLD.importe - NEW.importe
+            WHERE
+                boxes.id = NEW.box_id;
+        ELSEIF OLD.tipo = 'EGRESO'  AND NEW.tipo = 'EGRESO' THEN
+            UPDATE
+                boxes
+            SET
+                saldo = saldo + OLD.importe - NEW.importe
+            WHERE
+                boxes.id = NEW.box_id;
+        ELSEIF OLD.tipo = 'EGRESO'  AND NEW.tipo = 'INGRESO' THEN
+            UPDATE
+                boxes
+            SET
+                saldo = saldo + OLD.importe + NEW.importe
+            WHERE
+                boxes.id = NEW.box_id;
+        END IF;
+
+    END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -247,115 +345,124 @@ CREATE TABLE `permissions` (
 --
 
 INSERT INTO `permissions` (`id`, `name`, `description`, `guard_name`, `created_at`, `updated_at`) VALUES
-(1, 'users.index', 'Ver listado de usuarios', 'web', '2021-04-29 06:06:07', '2021-04-29 06:06:07'),
-(2, 'users.edit', 'Editar un usuario', 'web', '2021-04-29 06:06:13', '2021-04-29 06:06:13'),
-(3, 'users.update', 'Actualizar un usuario', 'web', '2021-04-29 06:06:30', '2021-04-29 06:06:30'),
-(4, 'users.create', 'Crear un usuario', 'web', '2021-04-29 06:06:39', '2021-04-29 06:06:39'),
-(5, 'users.destroy', 'Eliminar un usuario', 'web', '2021-04-29 06:06:53', '2021-04-29 06:06:53'),
-(6, 'users.show', 'Ver detalles de un usuario', 'web', '2021-04-29 06:06:55', '2021-04-29 06:06:55'),
-(7, 'users.pdfUsers', 'Generar PDF de usuarios', 'web', '2021-04-29 06:06:56', '2021-04-29 06:06:56'),
-(8, 'users.export', 'Exportar Excel de usuarios', 'web', '2021-04-29 06:06:57', '2021-04-29 06:06:57'),
-(9, 'roles.index', 'Ver listado de roles', 'web', '2021-04-29 06:06:58', '2021-04-29 06:06:58'),
-(10, 'roles.edit', 'Editar un rol', 'web', '2021-04-29 06:06:59', '2021-04-29 06:06:59'),
-(11, 'roles.update', 'Actualizar un rol', 'web', '2021-04-29 06:07:00', '2021-04-29 06:07:00'),
-(12, 'roles.create', 'Crear un rol', 'web', '2021-04-29 06:07:01', '2021-04-29 06:07:01'),
-(13, 'roles.destroy', 'Eliminar un rol', 'web', '2021-04-29 06:07:01', '2021-04-29 06:07:01'),
-(14, 'roles.show', 'Ver detalles de un rol', 'web', '2021-04-29 06:07:02', '2021-04-29 06:07:02'),
-(15, 'roles.pdfRoles', 'Generar PDF de roles', 'web', '2021-04-29 06:07:03', '2021-04-29 06:07:03'),
-(16, 'roles.export', 'Exportar Excel de roles', 'web', '2021-04-29 06:07:03', '2021-04-29 06:07:03'),
-(17, 'categories.index', 'Ver listado de categorías', 'web', '2021-04-29 06:07:04', '2021-04-29 06:07:04'),
-(18, 'categories.edit', 'Editar una categoría', 'web', '2021-04-29 06:07:05', '2021-04-29 06:07:05'),
-(19, 'categories.update', 'Actualizar una categoría', 'web', '2021-04-29 06:07:06', '2021-04-29 06:07:06'),
-(20, 'categories.create', 'Crear una categoría', 'web', '2021-04-29 06:07:07', '2021-04-29 06:07:07'),
-(21, 'categories.destroy', 'Eliminar una categoría', 'web', '2021-04-29 06:07:08', '2021-04-29 06:07:08'),
-(22, 'categories.show', 'Ver detalles de una categoría', 'web', '2021-04-29 06:07:08', '2021-04-29 06:07:08'),
-(23, 'categories.pdfCategories', 'Generar PDF de categorías', 'web', '2021-04-29 06:07:10', '2021-04-29 06:07:10'),
-(24, 'categories.export', 'Exportar Excel de categorías', 'web', '2021-04-29 06:07:10', '2021-04-29 06:07:10'),
-(25, 'clients.index', 'Ver listado de clientes', 'web', '2021-04-29 06:07:11', '2021-04-29 06:07:11'),
-(26, 'clients.edit', 'Editar un cliente', 'web', '2021-04-29 06:07:12', '2021-04-29 06:07:12'),
-(27, 'clients.update', 'Actualizar un cliente', 'web', '2021-04-29 06:07:13', '2021-04-29 06:07:13'),
-(28, 'clients.create', 'Crear un cliente', 'web', '2021-04-29 06:07:13', '2021-04-29 06:07:13'),
-(29, 'clients.destroy', 'Eliminar un cliente', 'web', '2021-04-29 06:07:14', '2021-04-29 06:07:14'),
-(30, 'clients.show', 'Mostrar detalles de un cliente', 'web', '2021-04-29 06:07:14', '2021-04-29 06:07:14'),
-(31, 'clients.pdfClients', 'Generar PDF de clientes', 'web', '2021-04-29 06:07:15', '2021-04-29 06:07:15'),
-(32, 'clients.export', 'Exportar Excel de clientes', 'web', '2021-04-29 06:07:16', '2021-04-29 06:07:16'),
-(33, 'products.index', 'Ver listado de productos', 'web', '2021-04-29 06:07:16', '2021-04-29 06:07:16'),
-(34, 'products.edit', 'Editar un producto', 'web', '2021-04-29 06:07:17', '2021-04-29 06:07:17'),
-(35, 'products.update', 'Actualizar un producto', 'web', '2021-04-29 06:07:18', '2021-04-29 06:07:18'),
-(36, 'products.create', 'Crear un producto', 'web', '2021-04-29 06:07:19', '2021-04-29 06:07:19'),
-(37, 'products.destroy', 'Eliminar un producto', 'web', '2021-04-29 06:07:19', '2021-04-29 06:07:19'),
-(38, 'products.show', 'Mostrar detalles de un producto', 'web', '2021-04-29 06:07:19', '2021-04-29 06:07:19'),
-(39, 'product.file', 'Obtener imagen de un producto', 'web', '2021-04-29 06:07:20', '2021-04-29 06:07:20'),
-(40, 'products.pdfProducts', 'Generar PDF de productos', 'web', '2021-04-29 06:07:20', '2021-04-29 06:07:20'),
-(41, 'products.export', 'Exportar Excel de productos', 'web', '2021-04-29 06:07:21', '2021-04-29 06:07:21'),
-(42, 'providers.index', 'Ver listado de proveedors', 'web', '2021-04-29 06:07:22', '2021-04-29 06:07:22'),
-(43, 'providers.edit', 'Editar un proveedor', 'web', '2021-04-29 06:07:22', '2021-04-29 06:07:22'),
-(44, 'providers.update', 'Actualizar un proveedor', 'web', '2021-04-29 06:07:23', '2021-04-29 06:07:23'),
-(45, 'providers.create', 'Crear un proveedor', 'web', '2021-04-29 06:07:23', '2021-04-29 06:07:23'),
-(46, 'providers.destroy', 'Eliminar un proveedor', 'web', '2021-04-29 06:07:25', '2021-04-29 06:07:25'),
-(47, 'providers.show', 'Mostrar detalle de un proveedor', 'web', '2021-04-29 06:07:25', '2021-04-29 06:07:25'),
-(48, 'providers.pdfProviders', 'Generar PDF de proveedores', 'web', '2021-04-29 06:07:26', '2021-04-29 06:07:26'),
-(49, 'providers.export', 'Exportar Excel de proveedores', 'web', '2021-04-29 06:07:27', '2021-04-29 06:07:27'),
-(50, 'purchases.index', 'Ver listado de compras', 'web', '2021-04-29 06:07:28', '2021-04-29 06:07:28'),
-(51, 'purchases.edit', 'Editar una compra', 'web', '2021-04-29 06:07:28', '2021-04-29 06:07:28'),
-(52, 'purchases.update', 'Actualizar una compra', 'web', '2021-04-29 06:07:29', '2021-04-29 06:07:29'),
-(53, 'purchases.create', 'Crear una compra', 'web', '2021-04-29 06:07:35', '2021-04-29 06:07:35'),
-(54, 'purchases.destroy', 'Eliminar una compra', 'web', '2021-04-29 06:07:35', '2021-04-29 06:07:35'),
-(55, 'purchases.show', 'Mostrar detalles de una compra', 'web', '2021-04-29 06:08:53', '2021-04-29 06:08:53'),
-(56, 'purchases.pdf_detalle', 'Generar el pdf de una compra', 'web', '2021-04-29 06:08:55', '2021-04-29 06:08:55'),
-(57, 'purchases.excel_detalle', 'Generar el detalle de una compra en excel', 'web', '2021-04-29 06:08:57', '2021-04-29 06:08:57'),
-(58, 'purchases.pdfPurchases', 'Generar PDF de compras', 'web', '2021-04-29 06:08:57', '2021-04-29 06:08:57'),
-(59, 'purchases.export', 'Exportar Excel de compras', 'web', '2021-04-29 06:08:58', '2021-04-29 06:08:58'),
-(60, 'sales.pdfSales', 'Generar PDF de ventas', 'web', '2021-04-29 06:08:58', '2021-04-29 06:08:58'),
-(61, 'sales.export', 'Exportar Excel de ventas', 'web', '2021-04-29 06:08:59', '2021-04-29 06:08:59'),
-(62, 'sales.index', 'Ver listado de ventas', 'web', '2021-04-29 06:09:00', '2021-04-29 06:09:00'),
-(63, 'sales.edit', 'Editar una venta', 'web', '2021-04-29 06:09:01', '2021-04-29 06:09:01'),
-(64, 'sales.update', 'Actualizar una venta', 'web', '2021-04-29 06:09:01', '2021-04-29 06:09:01'),
-(65, 'sales.create', 'Crear una venta', 'web', '2021-04-29 06:09:12', '2021-04-29 06:09:12'),
-(66, 'sales.destroy', 'Eliminar una venta', 'web', '2021-04-29 06:09:24', '2021-04-29 06:09:24'),
-(67, 'sales.show', 'Mostrar detalles de una venta', 'web', '2021-04-29 06:09:40', '2021-04-29 06:09:40'),
-(68, 'sales.pdf_detalle', 'Generar el pdf de una venta', 'web', '2021-04-29 06:09:46', '2021-04-29 06:09:46'),
-(69, 'sales.excel_detalle', 'Generar el detalle de una venta en excel', 'web', '2021-04-29 06:09:52', '2021-04-29 06:09:52'),
-(70, 'sales.print', 'Imprimir tickets de venta', 'web', '2021-04-29 06:09:58', '2021-04-29 06:09:58'),
-(71, 'business.index', 'Configurar datos del negocio', 'web', '2021-04-29 06:10:15', '2021-04-29 06:10:15'),
-(72, 'business.update', 'Actualizar datos del negocio', 'web', '2021-04-29 06:10:29', '2021-04-29 06:10:29'),
-(73, 'printer.index', 'Configurar datos de la impresora', 'web', '2021-04-29 06:12:15', '2021-04-29 06:12:15'),
-(74, 'printer.update', 'Actualizar datos de la impresora', 'web', '2021-04-29 06:12:39', '2021-04-29 06:12:39'),
-(75, 'purchases.upload', 'Subir imagen de una compra', 'web', '2021-04-29 06:12:40', '2021-04-29 06:12:40'),
-(76, 'products.status', 'Modificar el status de un producto', 'web', '2021-04-29 06:12:41', '2021-04-29 06:12:41'),
-(77, 'purchases.status', 'Modificar el status de una compra', 'web', '2021-04-29 06:12:42', '2021-04-29 06:12:42'),
-(78, 'sales.status', 'Modificar el status de una venta', 'web', '2021-04-29 06:12:43', '2021-04-29 06:12:43'),
-(79, 'sales.reports.day', 'Generar reporte de ventas del día', 'web', '2021-04-29 06:12:44', '2021-04-29 06:12:44'),
-(80, 'sales.reports.date', 'Generar reporte de ventas por rango de fecha', 'web', '2021-04-29 06:12:45', '2021-04-29 06:12:45'),
-(81, 'sales.report.result', 'Generar reportes de ventas', 'web', '2021-04-29 06:12:46', '2021-04-29 06:12:46'),
-(82, 'purchases.reports.purchases.day', 'Generar reporte de compras del día', 'web', '2021-04-29 06:12:47', '2021-04-29 06:12:47'),
-(83, 'purchases.reports.purchases.date', 'Generar reporte de compras por rango de fecha', 'web', '2021-04-29 06:12:48', '2021-04-29 06:12:48'),
-(84, 'purchases.report.purchases.result', 'Generar reportes de compras', 'web', '2021-04-29 06:12:48', '2021-04-29 06:12:48'),
-(85, 'purchases.print', 'Imprimir compra en impresora térmica', 'web', '2021-04-29 06:12:50', '2021-04-29 06:12:50'),
-(86, 'boxes.index', 'Ver listado de cajas', 'web', '2021-04-29 06:12:51', '2021-04-29 06:12:51'),
-(87, 'boxes.edit', 'Editar una caja', 'web', '2021-04-29 06:12:53', '2021-04-29 06:12:53'),
-(88, 'boxes.update', 'Actualizar una caja', 'web', '2021-04-29 06:12:54', '2021-04-29 06:12:54'),
-(89, 'boxes.create', 'Crear una caja', 'web', '2021-04-29 06:12:55', '2021-04-29 06:12:55'),
-(90, 'boxes.destroy', 'Eliminar una caja', 'web', '2021-04-29 06:12:56', '2021-04-29 06:12:56'),
-(91, 'boxes.pdfBoxes', 'Generar PDF de cajas', 'web', '2021-04-29 06:13:24', '2021-04-29 06:13:24'),
-(92, 'boxes.export', 'Exportar Excel de cajas', 'web', '2021-04-29 06:13:41', '2021-04-29 06:13:41'),
-(93, 'boxes.reports.corte_diario', 'Generar reporte de corte de caja por día', 'web', '2021-04-29 06:13:52', '2021-04-29 06:13:52'),
-(94, 'boxes.reports.corte_por_fecha', 'Generar reporte de corte de caja por fecha', 'web', '2021-04-29 06:13:58', '2021-04-29 06:13:58'),
-(95, 'concepts.index', 'Ver listado de concepto', 'web', '2021-04-29 06:14:09', '2021-04-29 06:14:09'),
-(96, 'concepts.edit', 'Editar un concepto', 'web', '2021-04-29 06:14:15', '2021-04-29 06:14:15'),
-(97, 'concepts.update', 'Actualizar un concepto', 'web', '2021-04-29 06:14:19', '2021-04-29 06:14:19'),
-(98, 'concepts.create', 'Crear un concepto', 'web', '2021-04-29 06:14:19', '2021-04-29 06:14:19'),
-(99, 'concepts.destroy', 'Eliminar un concepto', 'web', '2021-04-29 06:14:20', '2021-04-29 06:14:20'),
-(100, 'concepts.pdfConcepts', 'Generar PDF de conceptos de Egresos e Ingresos', 'web', '2021-04-29 06:14:22', '2021-04-29 06:14:22'),
-(101, 'concepts/export', 'Exportar Excel de conceptos de Egresos e Ingresos', 'web', '2021-04-29 06:14:24', '2021-04-29 06:14:24'),
-(102, 'moves.index', 'Ver listado de movimientos', 'web', '2021-04-29 06:14:24', '2021-04-29 06:14:24'),
-(103, 'moves.edit', 'Editar un movimiento', 'web', '2021-04-29 06:14:25', '2021-04-29 06:14:25'),
-(104, 'moves.update', 'Actualizar un movimiento', 'web', '2021-04-29 06:14:25', '2021-04-29 06:14:25'),
-(105, 'moves.create', 'Crear un movimiento', 'web', '2021-04-29 06:14:27', '2021-04-29 06:14:27'),
-(106, 'moves.destroy', 'Eliminar un movimiento', 'web', '2021-04-29 06:14:29', '2021-04-29 06:14:29'),
-(107, 'moves.show', 'Mostrar detalles de un movimiento', 'web', '2021-04-29 06:14:30', '2021-04-29 06:14:30'),
-(108, 'moves.conciliado', 'Cambiar la situación de conciliación de un movimiento', 'web', '2021-04-29 06:14:31', '2021-04-29 06:14:31'),
-(109, 'ptoventa.index', 'Ver el Dashboard', 'web', '2021-04-29 06:14:32', '2021-04-29 06:14:32');
+(1, 'users.index', 'Ver listado de usuarios', 'web', '2021-05-04 10:17:37', '2021-05-04 10:17:37'),
+(2, 'users.edit', 'Editar un usuario', 'web', '2021-05-04 10:17:37', '2021-05-04 10:17:37'),
+(3, 'users.update', 'Actualizar un usuario', 'web', '2021-05-04 10:17:42', '2021-05-04 10:17:42'),
+(4, 'users.create', 'Crear un usuario', 'web', '2021-05-04 10:17:43', '2021-05-04 10:17:43'),
+(5, 'users.destroy', 'Eliminar un usuario', 'web', '2021-05-04 10:17:43', '2021-05-04 10:17:43'),
+(6, 'users.show', 'Ver detalles de un usuario', 'web', '2021-05-04 10:17:43', '2021-05-04 10:17:43'),
+(7, 'users.pdfUsers', 'Generar PDF de usuarios', 'web', '2021-05-04 10:17:43', '2021-05-04 10:17:43'),
+(8, 'users.export', 'Exportar Excel de usuarios', 'web', '2021-05-04 10:17:48', '2021-05-04 10:17:48'),
+(9, 'roles.index', 'Ver listado de roles', 'web', '2021-05-04 10:17:48', '2021-05-04 10:17:48'),
+(10, 'roles.edit', 'Editar un rol', 'web', '2021-05-04 10:17:48', '2021-05-04 10:17:48'),
+(11, 'roles.update', 'Actualizar un rol', 'web', '2021-05-04 10:17:53', '2021-05-04 10:17:53'),
+(12, 'roles.create', 'Crear un rol', 'web', '2021-05-04 10:17:54', '2021-05-04 10:17:54'),
+(13, 'roles.destroy', 'Eliminar un rol', 'web', '2021-05-04 10:17:54', '2021-05-04 10:17:54'),
+(14, 'roles.show', 'Ver detalles de un rol', 'web', '2021-05-04 10:17:54', '2021-05-04 10:17:54'),
+(15, 'roles.pdfRoles', 'Generar PDF de roles', 'web', '2021-05-04 10:17:54', '2021-05-04 10:17:54'),
+(16, 'roles.export', 'Exportar Excel de roles', 'web', '2021-05-04 10:17:54', '2021-05-04 10:17:54'),
+(17, 'categories.index', 'Ver listado de categorías', 'web', '2021-05-04 10:17:54', '2021-05-04 10:17:54'),
+(18, 'categories.edit', 'Editar una categoría', 'web', '2021-05-04 10:17:59', '2021-05-04 10:17:59'),
+(19, 'categories.update', 'Actualizar una categoría', 'web', '2021-05-04 10:17:59', '2021-05-04 10:17:59'),
+(20, 'categories.create', 'Crear una categoría', 'web', '2021-05-04 10:18:00', '2021-05-04 10:18:00'),
+(21, 'categories.destroy', 'Eliminar una categoría', 'web', '2021-05-04 10:18:00', '2021-05-04 10:18:00'),
+(22, 'categories.show', 'Ver detalles de una categoría', 'web', '2021-05-04 10:18:00', '2021-05-04 10:18:00'),
+(23, 'categories.pdfCategories', 'Generar PDF de categorías', 'web', '2021-05-04 10:18:05', '2021-05-04 10:18:05'),
+(24, 'categories.export', 'Exportar Excel de categorías', 'web', '2021-05-04 10:18:05', '2021-05-04 10:18:05'),
+(25, 'clients.index', 'Ver listado de clientes', 'web', '2021-05-04 10:18:05', '2021-05-04 10:18:05'),
+(26, 'clients.edit', 'Editar un cliente', 'web', '2021-05-04 10:18:05', '2021-05-04 10:18:05'),
+(27, 'clients.update', 'Actualizar un cliente', 'web', '2021-05-04 10:18:05', '2021-05-04 10:18:05'),
+(28, 'clients.create', 'Crear un cliente', 'web', '2021-05-04 10:18:11', '2021-05-04 10:18:11'),
+(29, 'clients.destroy', 'Eliminar un cliente', 'web', '2021-05-04 10:18:11', '2021-05-04 10:18:11'),
+(30, 'clients.show', 'Mostrar detalles de un cliente', 'web', '2021-05-04 10:18:11', '2021-05-04 10:18:11'),
+(31, 'clients.pdfClients', 'Generar PDF de clientes', 'web', '2021-05-04 10:18:11', '2021-05-04 10:18:11'),
+(32, 'clients.export', 'Exportar Excel de clientes', 'web', '2021-05-04 10:18:11', '2021-05-04 10:18:11'),
+(33, 'products.index', 'Ver listado de productos', 'web', '2021-05-04 10:18:26', '2021-05-04 10:18:26'),
+(34, 'products.edit', 'Editar un producto', 'web', '2021-05-04 10:18:36', '2021-05-04 10:18:36'),
+(35, 'products.update', 'Actualizar un producto', 'web', '2021-05-04 10:18:46', '2021-05-04 10:18:46'),
+(36, 'products.create', 'Crear un producto', 'web', '2021-05-04 10:18:48', '2021-05-04 10:18:48'),
+(37, 'products.destroy', 'Eliminar un producto', 'web', '2021-05-04 10:18:49', '2021-05-04 10:18:49'),
+(38, 'products.show', 'Mostrar detalles de un producto', 'web', '2021-05-04 10:18:49', '2021-05-04 10:18:49'),
+(39, 'product.file', 'Obtener imagen de un producto', 'web', '2021-05-04 10:18:49', '2021-05-04 10:18:49'),
+(40, 'products.pdfProducts', 'Generar PDF de productos', 'web', '2021-05-04 10:18:49', '2021-05-04 10:18:49'),
+(41, 'products.export', 'Exportar Excel de productos', 'web', '2021-05-04 10:18:49', '2021-05-04 10:18:49'),
+(42, 'providers.index', 'Ver listado de proveedors', 'web', '2021-05-04 10:18:49', '2021-05-04 10:18:49'),
+(43, 'providers.edit', 'Editar un proveedor', 'web', '2021-05-04 10:18:50', '2021-05-04 10:18:50'),
+(44, 'providers.update', 'Actualizar un proveedor', 'web', '2021-05-04 10:18:50', '2021-05-04 10:18:50'),
+(45, 'providers.create', 'Crear un proveedor', 'web', '2021-05-04 10:18:50', '2021-05-04 10:18:50'),
+(46, 'providers.destroy', 'Eliminar un proveedor', 'web', '2021-05-04 10:18:50', '2021-05-04 10:18:50'),
+(47, 'providers.show', 'Mostrar detalle de un proveedor', 'web', '2021-05-04 10:18:55', '2021-05-04 10:18:55'),
+(48, 'providers.pdfProviders', 'Generar PDF de proveedores', 'web', '2021-05-04 10:18:55', '2021-05-04 10:18:55'),
+(49, 'providers.export', 'Exportar Excel de proveedores', 'web', '2021-05-04 10:18:55', '2021-05-04 10:18:55'),
+(50, 'purchases.index', 'Ver listado de compras', 'web', '2021-05-04 10:18:56', '2021-05-04 10:18:56'),
+(51, 'purchases.edit', 'Editar una compra', 'web', '2021-05-04 10:18:56', '2021-05-04 10:18:56'),
+(52, 'purchases.update', 'Actualizar una compra', 'web', '2021-05-04 10:19:01', '2021-05-04 10:19:01'),
+(53, 'purchases.create', 'Crear una compra', 'web', '2021-05-04 10:19:01', '2021-05-04 10:19:01'),
+(54, 'purchases.destroy', 'Eliminar una compra', 'web', '2021-05-04 10:19:01', '2021-05-04 10:19:01'),
+(55, 'purchases.show', 'Mostrar detalles de una compra', 'web', '2021-05-04 10:19:01', '2021-05-04 10:19:01'),
+(56, 'purchases.pdf_detalle', 'Generar el pdf de una compra', 'web', '2021-05-04 10:19:01', '2021-05-04 10:19:01'),
+(57, 'purchases.excel_detalle', 'Generar el detalle de una compra en excel', 'web', '2021-05-04 10:19:01', '2021-05-04 10:19:01'),
+(58, 'purchases.pdfPurchases', 'Generar PDF de compras', 'web', '2021-05-04 10:19:07', '2021-05-04 10:19:07'),
+(59, 'purchases.export', 'Exportar Excel de compras', 'web', '2021-05-04 10:19:07', '2021-05-04 10:19:07'),
+(60, 'sales.pdfSales', 'Generar PDF de ventas', 'web', '2021-05-04 10:19:07', '2021-05-04 10:19:07'),
+(61, 'sales.export', 'Exportar Excel de ventas', 'web', '2021-05-04 10:19:07', '2021-05-04 10:19:07'),
+(62, 'sales.index', 'Ver listado de ventas', 'web', '2021-05-04 10:19:07', '2021-05-04 10:19:07'),
+(63, 'sales.edit', 'Editar una venta', 'web', '2021-05-04 10:19:12', '2021-05-04 10:19:12'),
+(64, 'sales.update', 'Actualizar una venta', 'web', '2021-05-04 10:19:12', '2021-05-04 10:19:12'),
+(65, 'sales.create', 'Crear una venta', 'web', '2021-05-04 10:19:13', '2021-05-04 10:19:13'),
+(66, 'sales.destroy', 'Eliminar una venta', 'web', '2021-05-04 10:19:13', '2021-05-04 10:19:13'),
+(67, 'sales.show', 'Mostrar detalles de una venta', 'web', '2021-05-04 10:19:18', '2021-05-04 10:19:18'),
+(68, 'sales.pdf_detalle', 'Generar el pdf de una venta', 'web', '2021-05-04 10:19:18', '2021-05-04 10:19:18'),
+(69, 'sales.excel_detalle', 'Generar el detalle de una venta en excel', 'web', '2021-05-04 10:19:18', '2021-05-04 10:19:18'),
+(70, 'sales.print', 'Imprimir tickets de venta', 'web', '2021-05-04 10:19:18', '2021-05-04 10:19:18'),
+(71, 'business.index', 'Configurar datos del negocio', 'web', '2021-05-04 10:19:18', '2021-05-04 10:19:18'),
+(72, 'business.update', 'Actualizar datos del negocio', 'web', '2021-05-04 10:19:18', '2021-05-04 10:19:18'),
+(73, 'printer.index', 'Configurar datos de la impresora', 'web', '2021-05-04 10:19:28', '2021-05-04 10:19:28'),
+(74, 'printer.update', 'Actualizar datos de la impresora', 'web', '2021-05-04 10:19:43', '2021-05-04 10:19:43'),
+(75, 'purchases.upload', 'Subir imagen de una compra', 'web', '2021-05-04 10:19:53', '2021-05-04 10:19:53'),
+(76, 'products.status', 'Modificar el status de un producto', 'web', '2021-05-04 10:19:58', '2021-05-04 10:19:58'),
+(77, 'purchases.status', 'Modificar el status de una compra', 'web', '2021-05-04 10:20:08', '2021-05-04 10:20:08'),
+(78, 'sales.status', 'Modificar el status de una venta', 'web', '2021-05-04 10:20:08', '2021-05-04 10:20:08'),
+(79, 'sales.reports.day', 'Generar reporte de ventas del día', 'web', '2021-05-04 10:20:08', '2021-05-04 10:20:08'),
+(80, 'sales.reports.date', 'Generar reporte de ventas por rango de fecha', 'web', '2021-05-04 10:20:08', '2021-05-04 10:20:08'),
+(81, 'sales.report.result', 'Generar reportes de ventas', 'web', '2021-05-04 10:20:08', '2021-05-04 10:20:08'),
+(82, 'purchases.reports.purchases.day', 'Generar reporte de compras del día', 'web', '2021-05-04 10:20:09', '2021-05-04 10:20:09'),
+(83, 'purchases.reports.purchases.date', 'Generar reporte de compras por rango de fecha', 'web', '2021-05-04 10:20:09', '2021-05-04 10:20:09'),
+(84, 'purchases.report.purchases.result', 'Generar reportes de compras', 'web', '2021-05-04 10:20:09', '2021-05-04 10:20:09'),
+(85, 'purchases.print', 'Imprimir compra en impresora térmica', 'web', '2021-05-04 10:20:09', '2021-05-04 10:20:09'),
+(86, 'boxes.index', 'Ver listado de cajas', 'web', '2021-05-04 10:20:10', '2021-05-04 10:20:10'),
+(87, 'boxes.edit', 'Editar una caja', 'web', '2021-05-04 10:20:10', '2021-05-04 10:20:10'),
+(88, 'boxes.update', 'Actualizar una caja', 'web', '2021-05-04 10:20:10', '2021-05-04 10:20:10'),
+(89, 'boxes.create', 'Crear una caja', 'web', '2021-05-04 10:20:10', '2021-05-04 10:20:10'),
+(90, 'boxes.destroy', 'Eliminar una caja', 'web', '2021-05-04 10:20:10', '2021-05-04 10:20:10'),
+(91, 'boxes.pdfBoxes', 'Generar PDF de cajas', 'web', '2021-05-04 10:20:11', '2021-05-04 10:20:11'),
+(92, 'boxes.export', 'Exportar Excel de cajas', 'web', '2021-05-04 10:20:11', '2021-05-04 10:20:11'),
+(93, 'boxes.reports.corte_diario', 'Generar reporte de corte de caja por día', 'web', '2021-05-04 10:20:11', '2021-05-04 10:20:11'),
+(94, 'boxes.reports.corte_por_fecha', 'Generar reporte de corte de caja por fecha', 'web', '2021-05-04 10:20:11', '2021-05-04 10:20:11'),
+(95, 'concepts.index', 'Ver listado de concepto', 'web', '2021-05-04 10:20:11', '2021-05-04 10:20:11'),
+(96, 'concepts.edit', 'Editar un concepto', 'web', '2021-05-04 10:20:12', '2021-05-04 10:20:12'),
+(97, 'concepts.update', 'Actualizar un concepto', 'web', '2021-05-04 10:20:12', '2021-05-04 10:20:12'),
+(98, 'concepts.create', 'Crear un concepto', 'web', '2021-05-04 10:20:12', '2021-05-04 10:20:12'),
+(99, 'concepts.destroy', 'Eliminar un concepto', 'web', '2021-05-04 10:20:12', '2021-05-04 10:20:12'),
+(100, 'concepts.pdfConcepts', 'Generar PDF de conceptos de Egresos e Ingresos', 'web', '2021-05-04 10:20:12', '2021-05-04 10:20:12'),
+(101, 'concepts/export', 'Exportar Excel de conceptos de Egresos e Ingresos', 'web', '2021-05-04 10:20:12', '2021-05-04 10:20:12'),
+(102, 'moves.index', 'Ver listado de movimientos', 'web', '2021-05-04 10:20:13', '2021-05-04 10:20:13'),
+(103, 'moves.edit', 'Editar un movimiento', 'web', '2021-05-04 10:20:13', '2021-05-04 10:20:13'),
+(104, 'moves.update', 'Actualizar un movimiento', 'web', '2021-05-04 10:20:13', '2021-05-04 10:20:13'),
+(105, 'moves.create', 'Crear un movimiento', 'web', '2021-05-04 10:20:13', '2021-05-04 10:20:13'),
+(106, 'moves.destroy', 'Eliminar un movimiento', 'web', '2021-05-04 10:20:13', '2021-05-04 10:20:13'),
+(107, 'moves.show', 'Mostrar detalles de un movimiento', 'web', '2021-05-04 10:20:14', '2021-05-04 10:20:14'),
+(108, 'moves.conciliado', 'Cambiar la situación de conciliación de un movimiento', 'web', '2021-05-04 10:20:14', '2021-05-04 10:20:14'),
+(109, 'moves.pdfMoves', 'Generar PDF de movimientos', 'web', '2021-05-04 10:20:14', '2021-05-04 10:20:14'),
+(110, 'moves.export', 'Exportar Excel de movimientos', 'web', '2021-05-04 10:20:14', '2021-05-04 10:20:14'),
+(111, 'ptoventa.index', 'Ver el Dashboard', 'web', '2021-05-04 10:20:14', '2021-05-04 10:20:14'),
+(112, 'measures.index', 'Ver listado de medidas', 'web', '2021-05-04 10:20:14', '2021-05-04 10:20:14'),
+(113, 'measures.edit', 'Editar una medida', 'web', '2021-05-04 10:20:14', '2021-05-04 10:20:14'),
+(114, 'measures.update', 'Actualizar una medida', 'web', '2021-05-04 10:20:15', '2021-05-04 10:20:15'),
+(115, 'measures.create', 'Crear una medida', 'web', '2021-05-04 10:20:15', '2021-05-04 10:20:15'),
+(116, 'measures.destroy', 'Eliminar una medida', 'web', '2021-05-04 10:20:15', '2021-05-04 10:20:15'),
+(117, 'measures.pdfMeasures', 'Generar PDF de medidas', 'web', '2021-05-04 10:20:15', '2021-05-04 10:20:15'),
+(118, 'measures.export', 'Exportar Excel de medidas', 'web', '2021-05-04 10:20:15', '2021-05-04 10:20:15');
 
 -- --------------------------------------------------------
 
@@ -393,7 +500,7 @@ CREATE TABLE `printers` (
 --
 
 INSERT INTO `printers` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(1, '3nStar RPT-008', '2021-04-29 06:14:32', '2021-04-29 06:14:32');
+(1, '3nStar RPT-008', '2021-05-04 10:20:21', '2021-05-04 10:20:21');
 
 -- --------------------------------------------------------
 
@@ -405,7 +512,7 @@ CREATE TABLE `productgables` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `productgable_id` bigint(20) UNSIGNED NOT NULL,
   `productgable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `quantity` int(11) NOT NULL,
+  `quantity` decimal(12,3) NOT NULL,
   `price` decimal(8,2) NOT NULL,
   `discount` decimal(8,2) DEFAULT NULL,
   `product_id` bigint(20) UNSIGNED NOT NULL,
@@ -425,15 +532,16 @@ CREATE TABLE `products` (
   `bar_code` varchar(13) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `stock` int(11) NOT NULL DEFAULT 0,
+  `description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `stock` decimal(12,3) NOT NULL DEFAULT 0.000,
   `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `sell_price` decimal(12,2) NOT NULL,
   `status` enum('ACTIVE','DEACTIVATED') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'ACTIVE',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `provider_id` bigint(20) UNSIGNED NOT NULL,
-  `category_id` bigint(20) UNSIGNED NOT NULL
+  `category_id` bigint(20) UNSIGNED NOT NULL,
+  `measure_id` bigint(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -445,10 +553,10 @@ CREATE TABLE `products` (
 CREATE TABLE `providers` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `rfc_number` varchar(15) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `adress` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `phone` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `adress` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone` varchar(15) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -473,6 +581,30 @@ CREATE TABLE `purchases` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Disparadores `purchases`
+--
+DELIMITER $$
+CREATE TRIGGER `tr_updStockCompraAnular` AFTER UPDATE ON `purchases` FOR EACH ROW BEGIN
+    IF OLD.status = 'VALID' THEN
+        UPDATE
+            products p
+        JOIN purchase_details di ON
+            di.product_id = p.id AND di.purchase_id = NEW.id
+        SET
+            p.stock = p.stock - di.quantity;
+    ELSEIF OLD.status = 'CANCELED' THEN
+        UPDATE
+            products p
+        JOIN purchase_details di ON
+            di.product_id = p.id AND di.purchase_id = NEW.id
+        SET
+            p.stock = p.stock + di.quantity;
+    END IF;
+END
+$$
+DELIMITER ;
+
 -- --------------------------------------------------------
 
 --
@@ -481,13 +613,28 @@ CREATE TABLE `purchases` (
 
 CREATE TABLE `purchase_details` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `quantity` int(11) NOT NULL,
+  `quantity` decimal(12,3) NOT NULL,
   `price` decimal(8,2) NOT NULL,
   `purchase_id` bigint(20) UNSIGNED NOT NULL,
   `product_id` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Disparadores `purchase_details`
+--
+DELIMITER $$
+CREATE TRIGGER `tr_updStockCompra` AFTER INSERT ON `purchase_details` FOR EACH ROW BEGIN
+    UPDATE
+        products
+    SET
+        stock = stock + NEW.quantity
+    WHERE
+        products.id = NEW.product_id;
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -508,10 +655,10 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
-(1, 'SuperAdmin', 'web', '2021-04-29 06:05:50', '2021-04-29 06:05:50'),
-(2, 'Administrador', 'web', '2021-04-29 06:05:50', '2021-04-29 06:05:50'),
-(3, 'Comprador', 'web', '2021-04-29 06:05:51', '2021-04-29 06:05:51'),
-(4, 'Vendedor', 'web', '2021-04-29 06:06:02', '2021-04-29 06:06:02');
+(1, 'SuperAdmin', 'web', '2021-05-04 10:17:37', '2021-05-04 10:17:37'),
+(2, 'Administrador', 'web', '2021-05-04 10:17:37', '2021-05-04 10:17:37'),
+(3, 'Comprador', 'web', '2021-05-04 10:17:37', '2021-05-04 10:17:37'),
+(4, 'Vendedor', 'web', '2021-05-04 10:17:37', '2021-05-04 10:17:37');
 
 -- --------------------------------------------------------
 
@@ -532,8 +679,11 @@ INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
 (1, 1),
 (1, 2),
 (2, 1),
+(2, 2),
 (3, 1),
+(3, 2),
 (4, 1),
+(4, 2),
 (5, 1),
 (5, 2),
 (6, 1),
@@ -735,7 +885,25 @@ INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
 (108, 1),
 (108, 2),
 (109, 1),
-(109, 2);
+(109, 2),
+(110, 1),
+(110, 2),
+(111, 1),
+(111, 2),
+(112, 1),
+(112, 2),
+(113, 1),
+(113, 2),
+(114, 1),
+(114, 2),
+(115, 1),
+(115, 2),
+(116, 1),
+(116, 2),
+(117, 1),
+(117, 2),
+(118, 1),
+(118, 2);
 
 -- --------------------------------------------------------
 
@@ -756,6 +924,30 @@ CREATE TABLE `sales` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Disparadores `sales`
+--
+DELIMITER $$
+CREATE TRIGGER `tr_updStockVentaAnular` AFTER UPDATE ON `sales` FOR EACH ROW BEGIN
+    IF OLD.status = 'VALID' THEN
+        UPDATE
+        products p
+        JOIN sale_details dv ON
+            dv.product_id = p.id AND dv.sale_id = NEW.id
+        SET
+            p.stock = p.stock + dv.quantity;
+    ELSEIF OLD.status = 'CANCELED' THEN
+        UPDATE
+        products p
+        JOIN sale_details dv ON
+            dv.product_id = p.id AND dv.sale_id = NEW.id
+        SET
+            p.stock = p.stock - dv.quantity;
+    END IF;
+END
+$$
+DELIMITER ;
+
 -- --------------------------------------------------------
 
 --
@@ -764,7 +956,7 @@ CREATE TABLE `sales` (
 
 CREATE TABLE `sale_details` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `quantity` int(11) NOT NULL,
+  `quantity` decimal(12,3) NOT NULL,
   `price` decimal(8,2) NOT NULL,
   `discount` decimal(8,2) NOT NULL,
   `sale_id` bigint(20) UNSIGNED NOT NULL,
@@ -772,6 +964,21 @@ CREATE TABLE `sale_details` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Disparadores `sale_details`
+--
+DELIMITER $$
+CREATE TRIGGER `tr_updStockVenta` AFTER INSERT ON `sale_details` FOR EACH ROW BEGIN
+    UPDATE
+        products
+    SET
+        stock = stock - NEW.quantity
+    WHERE
+        products.id = NEW.product_id;
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -814,7 +1021,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `two_factor_secret`, `two_factor_recovery_codes`, `remember_token`, `current_team_id`, `profile_photo_path`, `created_at`, `updated_at`) VALUES
-(1, 'SuperAdmin', 'admin@gmail.com', NULL, '$2y$10$I9Ot2SFF3rq6VklPl1PzCu8hf6ELtYs2YpVA9L3f5IO6z551n8FX.', NULL, NULL, NULL, NULL, NULL, '2021-04-29 06:14:32', '2021-04-29 06:14:32');
+(1, 'SuperAdmin', 'admin@gmail.com', NULL, '$2y$10$ugDYrSdSKfbDWu..MdMVTOnTXJ5UdmGv/zkivS9WIV.4nFE/bKUGS', NULL, NULL, NULL, NULL, NULL, '2021-05-04 10:20:16', '2021-05-04 10:20:16'),
+(2, 'Administrador', 'administrador@correo.com', NULL, '$2y$10$I/hQe8UTPBmwt43AYBBCrO0rxUmSBlJaMnSPq0RE/w5vPdOAAEHw6', NULL, NULL, NULL, NULL, NULL, '2021-05-04 10:20:21', '2021-05-04 10:20:21');
 
 --
 -- Índices para tablas volcadas
@@ -846,9 +1054,9 @@ ALTER TABLE `categories`
 --
 ALTER TABLE `clients`
   ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `clients_rfc_number_unique` (`rfc_number`),
   ADD UNIQUE KEY `clients_phone_unique` (`phone`),
-  ADD UNIQUE KEY `clients_email_unique` (`email`),
-  ADD UNIQUE KEY `clients_rfc_number_unique` (`rfc_number`);
+  ADD UNIQUE KEY `clients_email_unique` (`email`);
 
 --
 -- Indices de la tabla `concepts`
@@ -863,6 +1071,14 @@ ALTER TABLE `concepts`
 ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
+
+--
+-- Indices de la tabla `measures`
+--
+ALTER TABLE `measures`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `measures_medida_unique` (`medida`),
+  ADD UNIQUE KEY `measures_simbolo_unique` (`simbolo`);
 
 --
 -- Indices de la tabla `migrations`
@@ -935,7 +1151,8 @@ ALTER TABLE `products`
   ADD UNIQUE KEY `products_code_unique` (`code`),
   ADD UNIQUE KEY `products_bar_code_unique` (`bar_code`),
   ADD KEY `products_provider_id_foreign` (`provider_id`),
-  ADD KEY `products_category_id_foreign` (`category_id`);
+  ADD KEY `products_category_id_foreign` (`category_id`),
+  ADD KEY `products_measure_id_foreign` (`measure_id`);
 
 --
 -- Indices de la tabla `providers`
@@ -944,8 +1161,8 @@ ALTER TABLE `providers`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `providers_name_unique` (`name`),
   ADD UNIQUE KEY `providers_email_unique` (`email`),
-  ADD UNIQUE KEY `providers_phone_unique` (`phone`),
-  ADD UNIQUE KEY `providers_rfc_number_unique` (`rfc_number`);
+  ADD UNIQUE KEY `providers_rfc_number_unique` (`rfc_number`),
+  ADD UNIQUE KEY `providers_phone_unique` (`phone`);
 
 --
 -- Indices de la tabla `purchases`
@@ -1051,10 +1268,16 @@ ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `measures`
+--
+ALTER TABLE `measures`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=181;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT de la tabla `moves`
@@ -1066,7 +1289,7 @@ ALTER TABLE `moves`
 -- AUTO_INCREMENT de la tabla `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=119;
 
 --
 -- AUTO_INCREMENT de la tabla `personal_access_tokens`
@@ -1132,7 +1355,7 @@ ALTER TABLE `sale_details`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Restricciones para tablas volcadas
@@ -1174,6 +1397,7 @@ ALTER TABLE `productgables`
 --
 ALTER TABLE `products`
   ADD CONSTRAINT `products_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`),
+  ADD CONSTRAINT `products_measure_id_foreign` FOREIGN KEY (`measure_id`) REFERENCES `measures` (`id`),
   ADD CONSTRAINT `products_provider_id_foreign` FOREIGN KEY (`provider_id`) REFERENCES `providers` (`id`);
 
 --
