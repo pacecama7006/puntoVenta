@@ -1,4 +1,4 @@
-<div class="col-md-3{{ $errors->has('code') ? ' has-error' : '' }}">
+<div class="col-md-2{{ $errors->has('code') ? ' has-error' : '' }}">
     {!! Form::label('code', 'Código del producto:', ['class' => 'form-label']) !!}
     {!! Form::text('code', null, ['class' => 'form-control']) !!}
     <small class="text-muted">Campo opcional</small>
@@ -14,15 +14,21 @@
     {!! Form::text('slug', null, ['class' => 'form-control', 'readonly']) !!}
     <small class="text-danger">{{ $errors->first('slug') }}</small>
 </div>
-<div class="col-md-3{{ $errors->has('bar_code') ? ' has-error' : '' }}">
+<div class="col-md-2{{ $errors->has('bar_code') ? ' has-error' : '' }}">
     {!! Form::label('bar_code', 'Código de barras:', ['class' => 'form-label']) !!}
     {!! Form::text('bar_code', null, ['class' => 'form-control']) !!}
     <small class="text-muted">Campo opcional</small>
     <small class="text-danger">{{ $errors->first('bar_code') }}</small>
 </div>
+<div class="col-md-2{{ $errors->has('measure_id') ? ' has-error' : '' }}">
+        {!! Form::label('measure_id', 'Medida:', ['class' => 'form-label']) !!}
+        {!! Form::select('measure_id', $measures, null, ['id' => 'measure_id', 'class' => 'form-select']) !!}
+        <small class="text-danger">{{ $errors->first('measure_id') }}</small>
+    </div>
 <div class="col-md-12{{ $errors->has('description') ? ' has-error' : '' }}">
     {!! Form::label('description', 'Descripción', ['class' => 'col-sm-2 form-label']) !!}
     {!! Form::textarea('description', null, ['class' => 'form-control', 'rows' => '5']) !!}
+    <small class="text-muted">Campo opcional</small>
     <small class="text-danger">{{ $errors->first('description') }}</small>
 </div>
 
@@ -67,7 +73,7 @@
     </div>
     <div class="col-md-4{{ $errors->has('sell_price') ? ' has-error' : '' }}">
         {!! Form::label('sell_price', 'Precio de venta:', ['class' => 'form-label']) !!}
-        {!! Form::number('sell_price', null, ['class' => 'form-control']) !!}
+        {!! Form::number('sell_price', null, ['class' => 'form-control','step' => '0.1']) !!}
         <small class="text-danger">{{ $errors->first('sell_price') }}</small>
     </div>
 
@@ -86,7 +92,7 @@
 @if (Route::currentRouteName()=='products.create')
     <div class="col-md-2{{ $errors->has('sell_price') ? ' has-error' : '' }}">
         {!! Form::label('sell_price', 'Precio de venta:', ['class' => 'form-label']) !!}
-        {!! Form::number('sell_price', null, ['class' => 'form-control','placeholder' =>'']) !!}
+        {!! Form::number('sell_price', null, ['class' => 'form-control','step' => '0.1']) !!}
         <small class="text-danger">{{ $errors->first('sell_price') }}</small>
     </div>
 

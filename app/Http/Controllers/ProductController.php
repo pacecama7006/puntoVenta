@@ -6,6 +6,7 @@ use App\Exports\ProductsExport;
 use App\Http\Requests\Product\StoreRequest;
 use App\Http\Requests\Product\UpdateRequest;
 use App\Models\Category;
+use App\Models\Measure;
 use App\Models\Product;
 use App\Models\Provider;
 use Barryvdh\DomPDF\Facade as PDF;
@@ -51,7 +52,8 @@ class ProductController extends Controller
         /*Recupero datos de las categorías y los proveedores que tenemos en la bd para poder pasárselos a la vista y poder utilizarlos. El método pluck me va a generar un array, tomándo el campo nombre de cada objeto y como segundo parámetro le pasamos que propiedad del objeto queremos que sea la llave del array, en este caso, el id*. Esta forma es para poder pasár el valor de los roles en forma de array llave-valor y utilizarlo en en campo de tipo select*/
         $categories = Category::pluck('name', 'id');
         $providers  = Provider::pluck('name', 'id');
-        return view('admin.product.create', compact('categories', 'providers'));
+        $measures   = Measure::pluck('medida', 'id');
+        return view('admin.product.create', compact('categories', 'providers', 'measures'));
     }
 
     /**
@@ -70,9 +72,11 @@ class ProductController extends Controller
         $bar_code    = $request->input('bar_code');
         $description = $request->input('description');
         $image_path  = $request->file('image');
+        // $sell_price  = number_format($request->input('sell_price'), 2);
         $sell_price  = $request->input('sell_price');
         $category_id = $request->input('category_id');
         $provider_id = $request->input('provider_id');
+        $measure_id  = $request->input('measure_id');
 
         //asigno valores al objeto
         $producto              = new Product();
@@ -84,6 +88,7 @@ class ProductController extends Controller
         $producto->sell_price  = $sell_price;
         $producto->category_id = $category_id;
         $producto->provider_id = $provider_id;
+        $producto->measure_id  = $measure_id;
 
         //Si hay una imagen en el formulario
         if ($request->hasFile('image')) {
@@ -134,7 +139,8 @@ class ProductController extends Controller
         /*Recupero datos de las categorías y los proveedores que tenemos en la bd para poder pasárselos a la vista y poder utilizarlos. El método pluck me va a generar un array, tomándo el campo nombre de cada objeto y como segundo parámetro le pasamos que propiedad del objeto queremos que sea la llave del array, en este caso, el id*. Esta forma es para poder pasár el valor de los roles en forma de array llave-valor y utilizarlo en en campo de tipo select*/
         $categories = Category::pluck('name', 'id');
         $providers  = Provider::pluck('name', 'id');
-        return view('admin.product.edit', compact('product', 'categories', 'providers'));
+        $measures   = Measure::pluck('medida', 'id');
+        return view('admin.product.edit', compact('product', 'categories', 'providers', 'measures'));
     }
 
     /**
@@ -170,6 +176,7 @@ class ProductController extends Controller
         $sell_price  = $request->input('sell_price');
         $category_id = $request->input('category_id');
         $provider_id = $request->input('provider_id');
+        $measure_id  = $request->input('measure_id');
 
         //asigno valores al objeto
         $producto              = Product::find($id);
@@ -181,6 +188,7 @@ class ProductController extends Controller
         $producto->sell_price  = $sell_price;
         $producto->category_id = $category_id;
         $producto->provider_id = $provider_id;
+        $producto->measure_id  = $measure_id;
 
         /*Forma de subir una imagen nueva y además borrar la imagen anterior en el disco
         creado en laravel images*/
@@ -256,6 +264,8 @@ class ProductController extends Controller
 
         if ($request->ajax()) {
             $producto = Product::where('bar_code', $request->bar_code)->get();
+            //Agrego la relación con medidas
+            $producto = $producto->fresh('measure');
         }
 
         return response()->json($producto);
@@ -266,8 +276,10 @@ class ProductController extends Controller
     {
         if ($request->ajax()) {
             $producto = Product::where('id', $request->id)->get();
-            return response()->json($producto);
+            //Agrego la relación con medidas
+            $producto = $producto->fresh('measure');
         }
+        return response()->json($producto);
     }
 
     public function print_barcode()

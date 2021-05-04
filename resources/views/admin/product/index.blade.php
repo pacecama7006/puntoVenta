@@ -71,6 +71,7 @@
 				        			<th>Código del producto</th>
 				        			<th>Nombre</th>
 				        			<th>Stock</th>
+				        			<th>Medida</th>
 				        			<th>Estado</th>
 				        			<th>Categoría</th>
 				        			<th>Acciones</th>
@@ -84,7 +85,7 @@
 											{{ $product->name }}
 										</td>
 										<td> {{ $product->stock }} </td>
-
+										<td> {{ $product->measure->simbolo }} </td>
 										@can('products.status')
 											@if ($product->status == 'ACTIVE')
 											<td>

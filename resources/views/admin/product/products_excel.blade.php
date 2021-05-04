@@ -16,6 +16,7 @@
 				<th>Nombre</th>
 				<th>Descripción</th>
 				<th>Stock</th>
+				<th>Medida</th>
 				<th>Precio de venta</th>
 			</tr>
 		</thead>
@@ -26,6 +27,7 @@
 					<td> {{ $product->name }}</td>
 					<td> {{ $product->description }}</td>
 					<td> {{ number_format($product->stock,2,'.',',') }}</td>
+					<td> {{ $product->measure->simbolo }}</td>
 					<td> {{ number_format($product->sell_price,2,'.',',') }}</td>
 				</tr>
 			@endforeach

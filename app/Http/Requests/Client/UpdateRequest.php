@@ -25,11 +25,13 @@ class UpdateRequest extends FormRequest
     {
         return [
             //
-            'name'    => 'required|string|max:50',
+            'name'  => 'required|string|max:50',
             // 'rfc_number' => 'string|min:12|unique:clients,rfc_number,' . $this->route('client')->id . '|max:15',
-            'address' => 'required|string|max:255|min:10',
-            'phone'   => 'required|string|unique:clients,phone,' . $this->route('client')->id . '|max:15',
-            'email'   => 'required|string|email|unique:clients,email,' . $this->route('client')->id . '|max:100',
+            // 'address' => 'required|string|max:255|min:10',
+            // 'phone'   => 'required|string|unique:clients,phone,' . $this->route('client')->id . '|max:15',
+            // 'email'   => 'required|string|email|unique:clients,email,' . $this->route('client')->id . '|max:100',
+            'phone' => 'unique:clients,phone,' . $this->route('client')->id,
+            'email' => 'unique:clients,email,' . $this->route('client')->id,
         ];
     }
 }

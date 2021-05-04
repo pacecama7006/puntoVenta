@@ -22,9 +22,9 @@ class RoleSeeder extends Seeder
         $role4 = Role::create(['name' => 'Vendedor']);
 
         Permission::create(['name' => 'users.index', 'description' => 'Ver listado de usuarios'])->syncRoles([$role1, $role2]);
-        Permission::create(['name' => 'users.edit', 'description' => 'Editar un usuario'])->syncRoles([$role1]);
-        Permission::create(['name' => 'users.update', 'description' => 'Actualizar un usuario'])->syncRoles([$role1]);
-        Permission::create(['name' => 'users.create', 'description' => 'Crear un usuario'])->syncRoles([$role1]);
+        Permission::create(['name' => 'users.edit', 'description' => 'Editar un usuario'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'users.update', 'description' => 'Actualizar un usuario'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'users.create', 'description' => 'Crear un usuario'])->syncRoles([$role1, $role2]);
         Permission::create(['name' => 'users.destroy', 'description' => 'Eliminar un usuario'])->syncRoles([$role1, $role2]);
         Permission::create(['name' => 'users.show', 'description' => 'Ver detalles de un usuario'])->syncRoles([$role1]);
         Permission::create(['name' => 'users.pdfUsers', 'description' => 'Generar PDF de usuarios'])->syncRoles([$role1]);
@@ -148,6 +148,17 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'moves.destroy', 'description' => 'Eliminar un movimiento'])->syncRoles([$role1, $role2]);
         Permission::create(['name' => 'moves.show', 'description' => 'Mostrar detalles de un movimiento'])->syncRoles([$role1, $role2]);
         Permission::create(['name' => 'moves.conciliado', 'description' => 'Cambiar la situación de conciliación de un movimiento'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'moves.pdfMoves', 'description' => 'Generar PDF de movimientos'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'moves.export', 'description' => 'Exportar Excel de movimientos'])->syncRoles([$role1, $role2]);
+
         Permission::create(['name' => 'ptoventa.index', 'description' => 'Ver el Dashboard'])->syncRoles([$role1, $role2]);
+
+        Permission::create(['name' => 'measures.index', 'description' => 'Ver listado de medidas'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'measures.edit', 'description' => 'Editar una medida'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'measures.update', 'description' => 'Actualizar una medida'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'measures.create', 'description' => 'Crear una medida'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'measures.destroy', 'description' => 'Eliminar una medida'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'measures.pdfMeasures', 'description' => 'Generar PDF de medidas'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'measures.export', 'description' => 'Exportar Excel de medidas'])->syncRoles([$role1, $role2]);
     }
 }

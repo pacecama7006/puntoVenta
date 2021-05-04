@@ -30,11 +30,12 @@ class UpdateRequest extends FormRequest
             'name'        => 'string|required|string|max:100|unique:products,name,' . $this->route('product')->id,
             'bar_code'    => 'string|unique:products,bar_code,' . $this->route('product')->id,
             'code'        => 'string|unique:products,code,' . $this->route('product')->id,
-            'description' => 'required|string|min:10|max:255',
+            // 'description' => 'required|string|min:10|max:255',
             'image'       => 'mimes:jpg,bmp,png,jpeg',
-            'sell_price'  => 'required',
+            'sell_price'  => 'required|between:0,99.99',
             'provider_id' => 'integer|required|exists:providers,id',
             'category_id' => 'integer|required|exists:categories,id',
+            'measure_id'  => 'integer|required|exists:measures,id',
         ];
     }
 }

@@ -44,7 +44,8 @@ class UserController extends Controller
     {
         //Traigo todos los roles solamente porque al asignar un rol, se asigna un permiso
         //automáticamente
-        $roles = Role::all();
+        // $roles = Role::all();
+        $roles = Role::where('name', '!=', 'SuperAdmin')->get();
 
         return view('admin.user.create', compact('roles'));
     }
@@ -95,7 +96,8 @@ class UserController extends Controller
     public function edit(User $user)
     {
         //Traemos todos los roles en la bd. Tengo que importar la clase use Spatie\Permission\Models\Role;
-        $roles = Role::all();
+        // $roles = Role::all();
+        $roles = Role::where('name', '!=', 'SuperAdmin')->get();
 
         return view('admin.user.edit', compact('user', 'roles'));
 

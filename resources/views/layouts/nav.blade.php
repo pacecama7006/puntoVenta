@@ -156,6 +156,26 @@
         </div>
       </li>
     @endcan
+    @can('measures.index')
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="collapse" href="#medidas" aria-expanded="false" aria-controls="page-layouts">
+          <i class="fas fa-balance-scale menu-icon"></i>
+          <span class="menu-title">Medidas</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="medidas">
+          <ul class="nav flex-column sub-menu">
+            @can('measures.index')
+              {{-- <li class="nav-item d-none d-lg-block"> <a class="nav-link" href="{{ route('measures.index') }}">Listado</a></li> --}}
+              <li class="nav-item d-lg-block"> <a class="nav-link" href="{{ route('measures.index') }}">Listado</a></li>
+            @endcan
+            @can('measures.create')
+                <li class="nav-item"> <a class="nav-link" href="{{ route('measures.create') }}">Crear</a></li>
+              @endcan
+          </ul>
+        </div>
+      </li>
+    @endcan
     @can('products.index')
       <li class="nav-item">
         <a class="nav-link" data-toggle="collapse" href="#productos" aria-expanded="false" aria-controls="page-layouts">

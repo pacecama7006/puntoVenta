@@ -37,17 +37,22 @@
 </div>
 <div class="col-md-3{{ $errors->has('quantity') ? ' has-error' : '' }}">
     {!! Form::label('quantity', 'Cantidad:', ['class' => 'form-label']) !!}
-    {!! Form::number('quantity', null, ['class' => 'form-control', 'placeholder' =>'cantidad de producto (s)...']) !!}
+    {!! Form::number('quantity', null, ['class' => 'form-control', 'placeholder' =>'cantidad de producto (s)...', 'step' => '0.1']) !!}
     <small class="text-danger">{{ $errors->first('quantity') }}</small>
+</div>
+<div class="col-md-3{{ $errors->has('medida') ? ' has-error' : '' }}">
+    {!! Form::label('medida', 'Medida:', ['class' => 'form-label']) !!}
+    {!! Form::text('medida', null, ['id' =>'medida', 'class' => 'form-control', 'aria-describedby' => 'helpId', 'disabled' => 'disabled']) !!}
+    <small class="text-danger">{{ $errors->first('medida') }}</small>
 </div>
 <div class="col-md-3{{ $errors->has('price') ? ' has-error' : '' }}">
     {!! Form::label('price', 'Precio:', ['class' => 'form-label']) !!}
-    {!! Form::number('price', null, ['class' => 'form-control', 'placeholder' =>'Precio de compra']) !!}
+    {!! Form::number('price', null, ['class' => 'form-control', 'disabled' =>'disabled', 'step' => '0.1']) !!}
     <small class="text-danger">{{ $errors->first('price') }}</small>
 </div>
 <div class="col-md-3{{ $errors->has('tax') ? ' has-error' : '' }}">
     {!! Form::label('tax', 'Impuesto:', ['class' => 'form-label']) !!}
-    {!! Form::number('tax', '0', ['class' => 'form-control']) !!}
+    {!! Form::number('tax', '0', ['class' => 'form-control', 'step' => '0.1']) !!}
     <small class="text-danger">{{ $errors->first('tax') }}</small>
 </div>
 <div class="col-md-6{{ $errors->has('picture') ? ' has-error' : '' }}">

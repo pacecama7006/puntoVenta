@@ -74,7 +74,7 @@
 {{-- <script src="{{ asset('melody/js/alerts.js') }}"></script>
 <script src="{{ asset('melody/js/avgrund.js') }}"></script> --}}
 <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
-{{-- <script src="{{ asset('js/detalleCompra.js') }}"></script> --}}
-<script type="text/javascript" src="{{ asset('js/detalleCompra.js') }}"></script>
+{{-- <script type="text/javascript" src="{{ asset('js/detalleCompra.js') }}"></script> --}}
+<script type="text/javascript" src="{{ asset('js/NvodetalleCompra.js') }}"></script>
 <script type="text/javascript" src="{{ asset('select2-develop/dist/js/select2.min.js') }}"></script>
 @endsection

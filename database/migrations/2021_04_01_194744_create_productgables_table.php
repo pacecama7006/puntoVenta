@@ -17,7 +17,7 @@ class CreateProductgablesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('productgable_id');
             $table->string('productgable_type');
-            $table->integer('quantity');
+            $table->decimal('quantity', 12, 3);
             $table->decimal('price');
             $table->decimal('discount')->nullable();
 

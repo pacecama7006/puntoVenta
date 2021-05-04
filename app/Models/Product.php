@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Category;
+use App\Models\Measure;
 use App\Models\Provider;
 use App\Models\Purchase;
 use App\Models\Sale;
@@ -25,6 +26,7 @@ class Product extends Model
         'status',
         'provider_id',
         'category_id',
+        'measure_id',
     ];
 
     /*
@@ -49,6 +51,13 @@ class Product extends Model
     {
         # code...
         return $this->belongsTo(Provider::class);
+    }
+
+    /*Un Producto pertenece a una medida, Una medida puede tener muchos productos*/
+    public function measure()
+    {
+        # code...
+        return $this->belongsTo(Measure::class);
     }
 
     //Relaciones polimórficas muchos a muchos

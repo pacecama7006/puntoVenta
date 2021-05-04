@@ -7,11 +7,11 @@ use App\Http\Controllers\ChartDataController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ConceptController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MeasureController;
 use App\Http\Controllers\MoveController;
 use App\Http\Controllers\PrinterController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProviderController;
-use App\Http\Controllers\PruebaVentaController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\RoleController;
@@ -69,6 +69,11 @@ Route::prefix('boxes')->group(function () {
     Route::post('corte_por_resultado', [ReportController::class, 'corte_caja__por_fecha_resultados'])->name('boxes.reports.corte_por_resultado');
 });
 
+Route::prefix('measures')->group(function () {
+    Route::get('pdfMeasures', [MeasureController::class, 'pdfMeasure'])->name('measures.pdfMeasures');
+    Route::get('export', [MeasureController::class, 'export'])->name('measures.export');
+});
+
 Route::get('categories/pdfCategories', [CategoryController::class, 'pdfCategories'])->name('categories.pdfCategories');
 Route::get('categories/export', [CategoryController::class, 'export'])->name('categories.export');
 Route::get('clients/pdfClients', [ClientController::class, 'pdfClients'])->name('clients.pdfClients');
@@ -102,6 +107,7 @@ Route::resource('products', ProductController::class)->names('products');
 Route::resource('boxes', BoxController::class)->names('boxes');
 Route::resource('concepts', ConceptController::class)->names('concepts');
 Route::resource('moves', MoveController::class)->names('moves');
+Route::resource('measures', MeasureController::class)->names('measures');
 
 //Ruta que me permite obtener el archivo de imágen de un producto
 Route::get('file/{filename}', [ProductController::class, 'getImagen'])->name('product.file');
@@ -148,9 +154,11 @@ Route::get('/get_products_by_id/{product_id}', [ProductController::class, 'get_p
 Route::get('print_barcode', [ProductController::class, 'print_barcode'])->name('print_barcode');
 Route::get('purchases/{user?}/Comprador', [PurchaseController::class, 'purchases_by_user_id'])->name('purchases.user_id');
 
-Route::get('pruebaCompra', [PruebaVentaController::class, 'index'])->name('pruebaCompra');
-/*Route::get('/get_products_by_barcode/{bar_code}', [PruebaVentaController::class, 'get_products_by_barcode'])->name('get_products_by_barcode');
+// Route::get('pruebaCompra', [PruebaVentaController::class, 'index'])->name('pruebaCompra');
+/*Route::get('pruebaVenta', [PruebaVentaController::class, 'index'])->name('pruebaCompra');
+Route::get('/get_products_by_barcode/{bar_code}', [PruebaVentaController::class, 'get_products_by_barcode'])->name('get_products_by_barcode');
 Route::get('/get_products_by_id/{product_id}', [PruebaVentaController::class, 'get_products_by_id'])->name('get_products_by_id');*/
+// Route::get('/get_measures_by_id/{measure_id}', [PruebaVentaController::class, 'get_measures_by_id'])->name('get_measures_by_id');
 
 /*Route::get('/get_products_by_barcode', [PruebaVentaController::class, 'get_products_by_barcode'])->name('get_products_by_barcode');
 

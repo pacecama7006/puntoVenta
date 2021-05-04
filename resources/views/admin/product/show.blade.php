@@ -173,7 +173,7 @@
 				    						Código de barras
 				    					</strong>
 				    					<p class="text-muted">
-				    						{!!DNS1D::getBarcodeSVG($product->bar_code, 'C39'); !!}
+				    						{!!DNS1D::getBarcodeSVG($product->bar_code, 'C39',1,33); !!}
 				    					</p>
 				    					<hr>
 				    				</div>

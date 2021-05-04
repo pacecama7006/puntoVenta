@@ -19,7 +19,7 @@
     <small class="text-muted">Campo opcional</small>
     <small class="text-danger">{{ $errors->first('bar_code') }}</small>
 </div>
-<div class="col-md-4">
+<div class="col-md-3">
     <label for="product_id" class="form-label">Seleccione un Producto:</label>
     <select id="product_id" name="product_id" class="form-select">
       <option value="" disabled selected></option>
@@ -30,29 +30,34 @@
           @endforeach
     </select>
 </div>
-<div class="col-md-4{{ $errors->has('stock') ? ' has-error' : '' }}">
+<div class="col-md-3{{ $errors->has('stock') ? ' has-error' : '' }}">
     {!! Form::label('stock', 'Stock actual:', ['class' => 'form-label']) !!}
-    {!! Form::text('stock', null, ['id' =>'stock', 'class' => 'form-control', 'disabled' => 'disabled']) !!}
+    {!! Form::text('stock', null, ['id' =>'stock', 'class' => 'form-control', 'disabled' => 'disabled', 'step' => '0.1']) !!}
     <small class="text-danger">{{ $errors->first('stock') }}</small>
 </div>
-<div class="col-md-4{{ $errors->has('quantity') ? ' has-error' : '' }}">
+<div class="col-md-3{{ $errors->has('quantity') ? ' has-error' : '' }}">
     {!! Form::label('quantity', 'Cantidad:', ['class' => 'form-label']) !!}
-    {!! Form::number('quantity', null, ['class' => 'form-control', 'placeholder' =>'cantidad de producto (s)...']) !!}
+    {!! Form::number('quantity', null, ['class' => 'form-control', 'placeholder' =>'cantidad de producto (s)...', 'step' => '0.1']) !!}
     <small class="text-danger">{{ $errors->first('quantity') }}</small>
+</div>
+<div class="col-md-3{{ $errors->has('medida') ? ' has-error' : '' }}">
+    {!! Form::label('medida', 'Medida:', ['class' => 'form-label']) !!}
+    {!! Form::text('medida', null, ['id' =>'medida', 'class' => 'form-control', 'aria-describedby' => 'helpId', 'disabled' => 'disabled']) !!}
+    <small class="text-danger">{{ $errors->first('medida') }}</small>
 </div>
 <div class="col-md-4{{ $errors->has('price') ? ' has-error' : '' }}">
     {!! Form::label('price', 'Precio:', ['class' => 'form-label']) !!}
-    {!! Form::number('price', null, ['class' => 'form-control', 'disabled' =>'disabled']) !!}
+    {!! Form::number('price', null, ['class' => 'form-control', 'step' => '0.1']) !!}
     <small class="text-danger">{{ $errors->first('price') }}</small>
 </div>
 <div class="col-md-4{{ $errors->has('tax') ? ' has-error' : '' }}">
     {!! Form::label('tax', 'Impuesto:', ['class' => 'form-label']) !!}
-    {!! Form::number('tax', '0', ['class' => 'form-control']) !!}
+    {!! Form::number('tax', '0', ['class' => 'form-control', 'step' => '0.1']) !!}
     <small class="text-danger">{{ $errors->first('tax') }}</small>
 </div>
 <div class="col-md-4{{ $errors->has('discount') ? ' has-error' : '' }}">
     {!! Form::label('discount', 'Descuento:', ['class' => 'form-label']) !!}
-    {!! Form::number('discount', '0', ['class' => 'form-control']) !!}
+    {!! Form::number('discount', '0', ['class' => 'form-control', 'step' => '0.1']) !!}
     <small class="text-danger">{{ $errors->first('discount') }}</small>
 </div>
 

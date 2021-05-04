@@ -29,10 +29,11 @@ class StoreRequest extends FormRequest
             'code'        => 'unique:products',
             'slug'        => 'string|unique:products',
             'bar_code'    => 'unique:products',
-            'description' => 'required|string|min:10|max:255',
-            'sell_price'  => 'required',
+            // 'description' => 'required|string|min:10|max:255',
+            'sell_price'  => 'required|between:0,99.99',
             'provider_id' => 'integer|required|exists:providers,id',
             'category_id' => 'integer|required|exists:categories,id',
+            'measure_id'  => 'integer|required|exists:measures,id',
         ];
     }
 }

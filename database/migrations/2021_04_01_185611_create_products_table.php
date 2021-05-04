@@ -19,8 +19,8 @@ class CreateProductsTable extends Migration
             $table->string('bar_code', 13)->unique()->nullable();
             $table->string('name', 100)->unique();
             $table->string('slug');
-            $table->string('description', 255);
-            $table->integer('stock')->default(0);
+            $table->string('description', 255)->nullable();
+            $table->decimal('stock', 12, 3)->default(0);
             $table->string('image', 255)->nullable();
             $table->decimal('sell_price', 12, 2);
             $table->enum('status', ['ACTIVE', 'DEACTIVATED'])->default('ACTIVE');
@@ -29,9 +29,11 @@ class CreateProductsTable extends Migration
             //Llaves foráneas.
             $table->unsignedBigInteger('provider_id');
             $table->unsignedBigInteger('category_id');
+            $table->unsignedBigInteger('measure_id');
 
             $table->foreign('provider_id')->references('id')->on('providers');
             $table->foreign('category_id')->references('id')->on('categories');
+            $table->foreign('measure_id')->references('id')->on('measures');
         });
     }
 
